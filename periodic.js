@@ -26,7 +26,7 @@ i=0;
 var mysql=require('mysql');
 var username="";
 var password="";
-
+console.log("Exec started");
 const express=require('express');
 const body_parser=require('body-parser');
 const app=express();
