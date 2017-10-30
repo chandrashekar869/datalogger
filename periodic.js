@@ -36,6 +36,7 @@ app.use(body_parser.urlencoded({
 
 app.get("/",function(req,res){
     res.sendFile("index.html",{root:__dirname});
+    console.log("Server running");
 });
 
 
