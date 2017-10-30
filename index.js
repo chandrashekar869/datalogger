@@ -40,7 +40,7 @@ app.get("/",function(req,res){
  }); 
 app.post("/medlynkdevicelistener",function(req,res){
     console.log("req",req.body.message);
-    res.send(req.body);
+    
     if(message.split("&&")[2]==0){
         //login message
         console.log("Login message");
