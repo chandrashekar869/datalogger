@@ -41,6 +41,7 @@ app.get("/",function(req,res){
 app.post("/medlynkdevicelistener",function(req,res){
     if(req.body.message==undefined)
         console.log("req no message param",req.body);
+    else{
     console.log("req",req.body.message);
     message=req.body.message;
     if(message.split("&&")[2]==0){
@@ -51,6 +52,7 @@ app.post("/medlynkdevicelistener",function(req,res){
     if(message.split("&&")[2]==1){
     res.send("98989898&&++&&1&&0&&0001&&1001&&++&&2&&relay1=1&&0001&&++&&2&&relay2=1&&0001&&++&&2&&config=/server/path&&0001");
     console.log("Periodic message");
+    }
     }
     //breakdown=message.split(dlmPattern);
     /*
