@@ -41,7 +41,7 @@ app.get("/",function(req,res){
 app.post("/medlynkdevicelistener",function(req,res){
     if(req.body.message==undefined){
         console.log("req no message param",req);
-        res.send(" ");
+        res.send("Hi from medlynk server");
     }
     else{
     console.log("req",req.body.message);
