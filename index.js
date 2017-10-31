@@ -39,6 +39,8 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
  }); 
 app.post("/medlynkdevicelistener",function(req,res){
+    if(req.body.message==undefined)
+        console.log("req no message param",req.body);
     console.log("req",req.body.message);
     message=req.body.message;
     if(message.split("&&")[2]==0){
