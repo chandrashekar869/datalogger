@@ -103,7 +103,7 @@ app.post("/medlynkdevicelistener",function(req,res){
 });
 
 app.post("/device/gaugesInfo", function(req, res){
-  var d_id = req.body;
+  var d_id = req.body.device_id;
    console.log("device_id",d_id);
     connection=createConnection();
     connection.connect(function(err){    
