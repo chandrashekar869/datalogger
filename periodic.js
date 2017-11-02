@@ -103,9 +103,9 @@ app.post("/medlynkdevicelistener",function(req,res){
 });
 
 app.post("/device/gaugesInfo", function(req, res){
-  var d_id = req.body.device_id+"";
-  d_id=d_id.replace(":","");
-  console.log("device_id",d_id);
+  var d_id = req.body.device_id;
+   console.log("device_id",d_id);
+	d_id=d_id.replace(":","");
     connection=createConnection();
     connection.connect(function(err){    
     if(err) throw err;
