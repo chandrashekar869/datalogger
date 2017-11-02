@@ -34,7 +34,7 @@ app.use(body_parser.urlencoded({
     extended:true
 }));
 
-app.post("/",function(req,res){
+app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
     console.log("Server running");
 });
