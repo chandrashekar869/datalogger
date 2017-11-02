@@ -40,7 +40,7 @@ app.get("/",function(req,res){
 });
 
 
-app.post("/messagesubmit",function(req,res){
+app.post("/medlynkdevicelistener",function(req,res){
     message=req.body.message;
     breakdown=message.split(dlmPattern);
     if(message.split("&&")[2]==0){
