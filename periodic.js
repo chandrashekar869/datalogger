@@ -536,7 +536,7 @@ function Update_data_log_current(){
     sql_device_log_current_update=sql_device_log_current_update.concat("',device_location='"+locationLL);
     sql_device_log_current_update=sql_device_log_current_update.concat("',gas_leak='"+tokenisedobj.data.TH["Gas Leak"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',low_gas='"+tokenisedobj.data.TH["Tank Level"]);
-    sql_device_log_current_update=sql_device_log_current_update.concat("',coordinates=' '");
+    sql_device_log_current_update=sql_device_log_current_update.concat("',coordinates=' ')");
     console.log(sql_device_log_current_update);
     connection.connect(function(err){
         if(err) throw err;
