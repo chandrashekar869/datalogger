@@ -88,7 +88,7 @@ app.post("/medlynkdevicelistener",function(req,res){
 
 
     app.post("/users/deviceList", function(req, res) {
-	var user_id = req.body.user_id;
+	var user_id = req.body.user_id.replace(":","");
 	var token = req.body.password;
   console.log(user_id);
 	    connection=createConnection();
