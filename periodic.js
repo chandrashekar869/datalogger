@@ -298,13 +298,12 @@ var bulk_message_variable=function bulk_message(){
 
 
     var periodic_message_variable=function periodic_message(){
-    if(!tokenisedobj.sfd){
 tokenisedobj.sessid=breakdown[0];
 tokenisedobj.sfd=breakdown[1];
 breakdown.shift();
 breakdown.shift();
-}
-breakdown.map(function(temp){
+
+/*breakdown.map(function(temp){
     if(i<4){
         if(i===1){
             tokenisedobj[params[i]]=parsedata(temp);
@@ -313,7 +312,22 @@ breakdown.map(function(temp){
         tokenisedobj[params[i]]=temp;
     }
     i++;
-});
+});*/
+	    
+for(i=0;i<=breakdown.length;i++){
+    if(i===4){
+        getDeviceId();
+    }
+    if(i<4){
+    if(i===1){
+        console.log("breakdown"+breakdown);
+        tokenisedobj[params[i]]=parsedata(breakdown[i]);
+    }
+    else
+    tokenisedobj[params[i]]=breakdown[i];
+}
+}
+	    
 console.log(tokenisedobj);
 getDeviceId();
 var periodic_response;
