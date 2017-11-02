@@ -34,17 +34,11 @@ app.use(body_parser.urlencoded({
     extended:true
 }));
 
-app.get("/",function(req,res){
-    res.sendFile("index.html",{root:__dirname});
+app.post("/",function(req,res){
+    res.sendFile("core.html",{root:__dirname});
     console.log("Server running");
 });
 
-
-app.post("/submit",function(req,res){
-    username=req.body.username;
-    password=req.body.password;
-    validateUser(res);
-});
 
 app.post("/messagesubmit",function(req,res){
     message=req.body.message;
@@ -141,31 +135,6 @@ function validateDevice(res){
         });
     }); 
     }
-
-
-
-function validateUser(res){
-    connection=createConnection();
-    connection.connect(function(err){
-        if(err) throw err;
-        console.log("Connected");
-        var device_id_query="Select * from user_details where user_name='"+username+"' AND password='"+password+"'";
-        console.log(device_id_query);
-        connection.query(device_id_query,function(err,result,fields){
-            if(result.length == 0 ){
-                console.log("username not found");
-                res.sendFile("index.html",{root:__dirname});
-            }
-            else{
-            console.log(result);
-            res.sendFile("core.html",{root:__dirname});
-        }
-        });
-    }); 
-    }
-
-
-
 
 function createConnection(){
  //creates or init mysql connection
@@ -477,7 +446,7 @@ function getServerDate(){
 //To insert into table device_log_historical
 function insertIntodevice_log_historical(){
     connection=createConnection();
-var sql_device_log_historical="INSERT INTO device_log_historical(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,sim_detail,ip_address,power_level) VALUES(";
+var sql_device_log_historical="INSERT INTO device_log_historical(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,sim_detail,ip_address,power_level,gas_leak,low_gas,coordinates) VALUES(";
 sql_device_log_historical=sql_device_log_historical.concat("'"+device_id+"',");//temp value set
 sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Tank Pressure"]+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Line Pressure"]+"',");
@@ -494,8 +463,12 @@ sql_device_log_historical=sql_device_log_historical.concat("'"+datetime+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+((""+tokenisedobj.data.RS["full"]).substring(1,6))+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+sim_detail+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+ip_address+"',");
-sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Battery Level"]+"')");
-console.log(sql_device_log_historical);
+sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Battery Level"]+"',");
+sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.TH["Gas Leak"]+"',");
+sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.TH["Tank Level"]+"',");
+sql_device_log_historical=sql_device_log_historical.concat("' ')");
+
+    console.log(sql_device_log_historical);
 connection.connect(function(err){
     if(err) throw err;
     console.log("Connected");
@@ -511,7 +484,7 @@ connection.connect(function(err){
 
 function Update_data_log_current(){
     connection=createConnection();
-    var sql_device_log_current_update="INSERT INTO device_log_current(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,power_level,customer_name,device_location) VALUES (";
+    var sql_device_log_current_update="INSERT INTO device_log_current(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,power_level,customer_name,device_location,gas_leak,low_gas,coordinates) VALUES (";
     sql_device_log_current_update=sql_device_log_current_update.concat("'"+device_id);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Tank Pressure"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Line Pressure"]);
@@ -528,7 +501,11 @@ function Update_data_log_current(){
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+((""+tokenisedobj.data.RS["full"]).substring(1,6)));
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Battery Level"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+customer_name);
-    sql_device_log_current_update=sql_device_log_current_update.concat("','"+locationLL+"')");
+    sql_device_log_current_update=sql_device_log_current_update.concat("','"+locationLL);
+    sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.TH["Gas Leak"]);
+    sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.TH["Tank Level"]);
+    sql_device_log_current_update=sql_device_log_current_update.concat("',' ')");
+    
     sql_device_log_current_update=sql_device_log_current_update.concat(" ON DUPLICATE KEY UPDATE ");
     sql_device_log_current_update=sql_device_log_current_update.concat("device_id='"+device_id);    
     sql_device_log_current_update=sql_device_log_current_update.concat("',tank_pressure='"+tokenisedobj.data.AD["Tank Pressure"]);    
@@ -543,7 +520,11 @@ function Update_data_log_current(){
     sql_device_log_current_update=sql_device_log_current_update.concat("',solenoid='"+((""+tokenisedobj.data.RS["full"]).substring(1,6)));
     sql_device_log_current_update=sql_device_log_current_update.concat("',power_level='"+tokenisedobj.data.AD["Battery Level"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',customer_name='"+customer_name);
-    sql_device_log_current_update=sql_device_log_current_update.concat("',device_location='"+locationLL+"'");
+    sql_device_log_current_update=sql_device_log_current_update.concat("',device_location='"+locationLL);
+    sql_device_log_current_update=sql_device_log_current_update.concat("',gas_leak='"+tokenisedobj.data.TH["Gas Leak"]);
+    sql_device_log_current_update=sql_device_log_current_update.concat("',low_gas='"+tokenisedobj.data.TH["Tank Level"]);
+    sql_device_log_current_update=sql_device_log_current_update.concat("',coordinates=' '");
+    
     console.log(sql_device_log_current_update);
     connection.connect(function(err){
         if(err) throw err;
