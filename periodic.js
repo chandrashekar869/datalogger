@@ -88,7 +88,7 @@ app.post("/medlynkdevicelistener",function(req,res){
 
 
     app.post("/users/deviceList", function(req, res) {
-	var user_id = req.body.user_id.replace(":","");
+	var user_id = req.body.user_id;
 	var token = req.body.password;
   console.log(user_id);
 	    connection=createConnection();
@@ -104,7 +104,7 @@ app.post("/medlynkdevicelistener",function(req,res){
 });
 
 app.post("/device/gaugesInfo", function(req, res){
-  var d_id = req.body.device_id;
+  var d_id = req.body.device_id.replace(":","");
    console.log("device_id",d_id);
     connection=createConnection();
     connection.connect(function(err){    
