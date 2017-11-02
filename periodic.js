@@ -82,6 +82,10 @@ app.post("/medlynkdevicelistener",function(req,res){
     
     //api start
     
+    //api end
+});
+
+
     app.post("/deviceList", function(req, res) {
 	var user_id = req.body.username;
 	var token = req.body.password;
@@ -116,8 +120,8 @@ app.post("/gaugesInfo", function(req, res){
 	
 });
    
-    //api end
-});
+
+
 app.listen(3000);
 
 function get_state_updated(res,exec){   
