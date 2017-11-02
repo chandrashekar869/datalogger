@@ -515,10 +515,10 @@ function Update_data_log_current(){
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+((""+tokenisedobj.data.RS["full"]).substring(1,6)));
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Battery Level"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+customer_name);
-
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+locationLL);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.TH["Gas Leak"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.TH["Tank Level"]);
+    sql_device_log_current_update=sql_device_log_current_update.concat("',' ')");
     sql_device_log_current_update=sql_device_log_current_update.concat(" ON DUPLICATE KEY UPDATE ");
     sql_device_log_current_update=sql_device_log_current_update.concat("device_id='"+device_id);    
     sql_device_log_current_update=sql_device_log_current_update.concat("',tank_pressure='"+tokenisedobj.data.AD["Tank Pressure"]);    
