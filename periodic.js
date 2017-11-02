@@ -88,7 +88,7 @@ app.post('/device/gaugesInfo', function(req, res){
     connection.connect(function(err){    
     if(err) throw err;
     console.log("Connected alarm api");
-    connection.query("SELECT device_Id,gas_pressureA,gas_pressureB,gas_level,gas_detector,alarm,beacon,power_level,log_time,meter1,meter2,meter3,meter4,customer_name,solenoid FROM data_log_current where device_Id='"+device_id+"'", function (err, result, fields) {
+    connection.query("SELECT device_Id,tank_pressure,line_pressure,gas_level,gas_detector,gas_leak,low_gas,power_level,log_time,meter1,meter2,meter3,meter4,customer_name,solenoid FROM device_log_current where device_Id='"+device_id+"'", function (err, result, fields) {
     if (err) throw err;
     res.send(result);
    }); 
