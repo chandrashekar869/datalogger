@@ -103,14 +103,14 @@ app.post("/medlynkdevicelistener",function(req,res){
 });
 
 app.post("/device/gaugesInfo", function(req, res){
-  var device_id = req.body.device_id+"";
-  device_id=device_id.replace(":","");
-  console.log("device_id",device_id);
+  var d_id = req.body.device_id+"";
+  d_id=d_id.replace(":","");
+  console.log("device_id",d_id);
     connection=createConnection();
     connection.connect(function(err){    
     if(err) throw err;
     console.log("Connected alarm api");
-    connection.query("SELECT device_Id,tank_pressure,line_pressure,gas_level,gas_detector,gas_leak,low_gas,power_level,log_time,meter1,meter2,meter3,meter4,customer_name,solenoid FROM device_log_current where device_Id='"+device_id+"'", function (err, result, fields) {
+    connection.query("SELECT device_Id,tank_pressure,line_pressure,gas_level,gas_detector,gas_leak,low_gas,power_level,log_time,meter1,meter2,meter3,meter4,customer_name,solenoid FROM device_log_current where device_Id='"+d_id+"'", function (err, result, fields) {
     if (err) throw err;
     res.send(result);
    }); 
