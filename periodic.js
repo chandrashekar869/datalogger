@@ -94,7 +94,7 @@ app.post("/medlynkdevicelistener",function(req,res){
     connection.connect(function(err){    
 	    if(err) throw err;
 	    console.log("Connected alarm api");
-    connection.query("SELECT a.device_id ,alarm,beacon,coordinates,log_time FROM user_device_list a,data_log_current b where  a.user_id='1234' and a.device_id = b.device_Id", function (err, result, fields) {
+    connection.query("SELECT a.device_id ,gas_leak,low_gas,coordinates,log_time FROM user_device_list a,device_log_current b where  a.user_id='1234' and a.device_id = b.device_Id", function (err, result, fields) {
     console.log("SELECT a.device_id ,alarm,beacon,coordinates,log_time FROM user_device_list a,data_log_current b where  a.user_id='1234' and a.device_id = b.device_Id");
     if (err) throw err;
     res.send(result);
