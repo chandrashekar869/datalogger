@@ -68,22 +68,34 @@ app.post("/medlynkdevicelistener",function(req,res){
 	var user_id = req.body.username;
 	var token = req.body.password;
   //console.log(sqlFun(user_id,getJson));
-  connection.query("SELECT a.device_id ,alarm,beacon,coordinates,log_time FROM user_device_list a,data_log_current b where  a.user_id='1234' and a.device_id = b.device_Id", function (err, result, fields) {
+	    connection=createConnection();
+    connection.connect(function(err){    
+	    if(err) throw err;
+	    console.log("Connected alarm api");
+    connection.query("SELECT a.device_id ,alarm,beacon,coordinates,log_time FROM user_device_list a,data_log_current b where  a.user_id='1234' and a.device_id = b.device_Id", function (err, result, fields) {
     console.log("SELECT a.device_id ,alarm,beacon,coordinates,log_time FROM user_device_list a,data_log_current b where  a.user_id='1234' and a.device_id = b.device_Id");
     if (err) throw err;
     res.send(result);
-   }); 
+   });
+    }); 
 });
 
 app.post('/device/gaugesInfo', function(req, res){
   var device_id = req.body.device_id;
   device_id = device_id.replace( /:/g, "" );
   console.log(device_id);
-  connection.query("SELECT device_Id,gas_pressureA,gas_pressureB,gas_level,gas_detector,alarm,beacon,power_level,log_time,meter1,meter2,meter3,meter4,solenoid FROM data_log_current where device_Id='"+device_id+"'", function (err, result, fields) {
+    connection=createConnection();
+    connection.connect(function(err){    
+    if(err) throw err;
+    console.log("Connected alarm api");
+    connection.query("SELECT device_Id,gas_pressureA,gas_pressureB,gas_level,gas_detector,alarm,beacon,power_level,log_time,meter1,meter2,meter3,meter4,solenoid FROM data_log_current where device_Id='"+device_id+"'", function (err, result, fields) {
     if (err) throw err;
     res.send(result);
    }); 
-  console.log("SELECT gas_pressureA,gas_pressureB,gas_level,gas_detector FROM data_log_current where device_Id='"+device_id+"'");
+  	console.log("SELECT gas_pressureA,gas_pressureB,gas_level,gas_detector FROM data_log_current where device_Id='"+device_id+"'");
+    
+    });	
+	
 });
    
     //api end
