@@ -462,7 +462,7 @@ function getServerDate(){
 //To insert into table device_log_historical
 function insertIntodevice_log_historical(){
     connection=createConnection();
-var sql_device_log_historical="INSERT INTO device_log_historical(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,sim_detail,ip_address,power_level) VALUES(";
+var sql_device_log_historical="INSERT INTO device_log_historical(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,sim_detail,ip_address,power_level,gas_leak,low_gas,coordinates) VALUES(";
 sql_device_log_historical=sql_device_log_historical.concat("'"+device_id+"',");//temp value set
 sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Tank Pressure"]+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Line Pressure"]+"',");
@@ -498,7 +498,7 @@ connection.connect(function(err){
 
 function Update_data_log_current(){
     connection=createConnection();
-    var sql_device_log_current_update="INSERT INTO device_log_current(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,power_level,customer_name,device_location) VALUES (";
+    var sql_device_log_current_update="INSERT INTO device_log_current(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,power_level,customer_name,device_location,gas_leak,low_gas,coordinates) VALUES (";
     sql_device_log_current_update=sql_device_log_current_update.concat("'"+device_id);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Tank Pressure"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Line Pressure"]);
