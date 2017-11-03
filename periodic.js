@@ -200,7 +200,7 @@ function validateDevice(res){
 
 function createConnection(){
  //creates or init mysql connection
-    return mysql.createConnection(
+    var sqlerror= mysql.createConnection(
     {
         user:"root",
         host:"localhost",
@@ -208,6 +208,10 @@ function createConnection(){
         database:"data_logger"
     }
     );
+	if(sqlerror==err)
+		return;
+	else
+		return sqlerror;
 }
 
 function getDeviceId(){
