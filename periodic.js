@@ -576,7 +576,7 @@ function Update_data_log_current(){
     var datetime=dtemp[0].split("/").reverse().join("-")+" "+dtemp[1];
     console.log(datetime);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+datetime);
-    sql_device_log_current_update=sql_device_log_current_update.concat("','"+((""+tokenisedobj.data.RS["full"]).substring(1,6)));
+    sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.RS["full"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Battery Level"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+customer_name);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+locationLL);
@@ -594,7 +594,7 @@ function Update_data_log_current(){
     sql_device_log_current_update=sql_device_log_current_update.concat("',meter3='"+tokenisedobj.data.DC["Gas Meter 3"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',meter4='"+tokenisedobj.data.DC["Gas Meter 4"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',log_time='"+datetime);
-    sql_device_log_current_update=sql_device_log_current_update.concat("',solenoid='"+((""+tokenisedobj.data.RS["full"]).substring(1,6)));
+    sql_device_log_current_update=sql_device_log_current_update.concat("',solenoid='"+tokenisedobj.data.RS["full"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',power_level='"+tokenisedobj.data.AD["Battery Level"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',customer_name='"+customer_name);
     sql_device_log_current_update=sql_device_log_current_update.concat("',device_location='"+locationLL);
