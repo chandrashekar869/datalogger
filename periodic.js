@@ -36,22 +36,6 @@ app.use(body_parser.urlencoded({
 }));
 
 
-app.use(function (req, res, next){
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://40.71.199.63:8080');
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    // Pass to next layer of middleware
-    next();
-});
-
-
-
 
 app.get("/",function(req,res){
    console.log("Server running");
@@ -80,44 +64,9 @@ app.post("/medlynkdevicelistener",function(req,res){
         //res.send(resmessage);
         get_state_updated(res,bulk_message_variable);
     }
-    
-    //api start
-    
-    //api end
+
 });
 
-
-    app.post("/users/deviceList", function(req, res) {
-	var user_id = req.body.user_id;
-	var token = req.body.password;
-  console.log(user_id);
-	    connection=createConnection();
-    connection.connect(function(err){    
-	    if(err) throw err;
-	    console.log("Connected alarm api");
-    connection.query("SELECT a.device_id ,gas_leak,low_gas,coordinates,log_time FROM user_device_list a,device_log_current b where  a.user_id='1234' and a.device_id = b.device_Id", function (err, result, fields) {
-    console.log("SELECT a.device_id ,alarm,beacon,coordinates,log_time FROM user_device_list a,data_log_current b where  a.user_id='1234' and a.device_id = b.device_Id");
-    if (err) throw err;
-    res.send(result);
-   });
-    }); 
-});
-
-app.post("/device/gaugesInfo", function(req, res){
-  var d_id = req.body.device_id.replace(":","");
-   console.log("device_id",d_id);
-    connection=createConnection();
-    connection.connect(function(err){    
-    if(err) throw err;
-    console.log("Connected alarm api");
-    connection.query("SELECT device_Id,tank_pressure,line_pressure,gas_level,gas_detector,gas_leak,low_gas,power_level,log_time,meter1,meter2,meter3,meter4,customer_name,solenoid FROM device_log_current where device_Id='"+d_id+"'", function (err, result, fields) {
-    if (err) throw err;
-    res.send(result);
-   }); 
-  	console.log("SELECT gas_pressureA,gas_pressureB,gas_level,gas_detector FROM data_log_current where device_Id='"+device_id+"'");
-    
-    });	
-	
 });
    
 
@@ -200,19 +149,14 @@ function validateDevice(res){
 
 function createConnection(){
  //creates or init mysql connection
-	try{
-    var sqlerror= mysql.createConnection(
+ return mysql.createConnection(
     {
         user:"root",
         host:"localhost",
         password:"root",
         database:"data_logger"
     }
-    );}
-	catch(err){
-		return;
-	}
-	return sqlerror;
+    );
 }
 
 function getDeviceId(){
