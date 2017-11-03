@@ -540,7 +540,7 @@ var dtemp=tokenisedobj["time"].split(",");
 var datetime=dtemp[0].split("/").reverse().join("-")+" "+dtemp[1];
 console.log(datetime);
 sql_device_log_historical=sql_device_log_historical.concat("'"+datetime+"',");
-sql_device_log_historical=sql_device_log_historical.concat("'"+((""+tokenisedobj.data.RS["full"]+"',");
+sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.RS["full"]+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+sim_detail+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+ip_address+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Battery Level"]+"',");
