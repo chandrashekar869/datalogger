@@ -231,7 +231,7 @@ function getDeviceId(){
         result=result[0];
             result=result.device_id;
             device_id=result;
-            insertIntoraw_table();
+            //insertIntoraw_table();
             Update_data_log_current();
             insertIntodevice_log_historical();
             var periodic_response;
