@@ -606,6 +606,7 @@ function insert_session_log(){
             
          });
     });
+    connection.end();
 }
-connection.end();
+
 }
