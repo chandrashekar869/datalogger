@@ -22,7 +22,6 @@ app.get("/",function(req,res){
 app.post("/medlynkdevicelistener",function(req,res){
     message=req.body.name;
     console.log(message);
-    breakdown=message.split(dlmPattern);
     if(message.split("&&")[2]==0){
         //login message
         var a=new instance();
