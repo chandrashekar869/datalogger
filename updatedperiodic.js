@@ -43,8 +43,6 @@ app.post("/medlynkdevicelistener",function(req,res){
        // var resmessage=bulk_message();
         //res.send(resmessage);
         var c=new instance();
-        c.validateDevice(res);
-        validateDevice(res);
         c.get_state_updated(res,c.bulk_message_variable);
     }
 
