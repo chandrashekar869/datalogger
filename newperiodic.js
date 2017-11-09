@@ -172,7 +172,7 @@ function getDeviceId(){
         else{    
         result=result[0];
             result=result.device_id;
-            device_id=result;
+            device_id=temp_device_id;
             insertIntoraw_table();
             Update_data_log_current();
             insertIntodevice_log_historical();
@@ -407,7 +407,7 @@ function update_user_device_list(sessid_new_recieve,dev_id_recieve){
 function insertIntoraw_table(){
     connection=createConnection();
 var sql="INSERT INTO raw_table(device_id,device_user,pwd,analog_ch1,analog_ch2,analog_ch3,analog_ch4,analog_ch5,analog_ch6,analog_ch7,analog_ch8,digital,capture_time,state,alarm,threshold,gas_level,Relay,DC_CH1,DC_CH2,DC_CH3,DC_CH4,address,locationLL,ip_address,configuration_file_location,configuration_password,device_transaction_id,server_transaction_id) VALUES(";
-sql=sql.concat("'"+device_id+"',");//temp value set
+sql=sql.concat("'"+temp_device_id+"',");//temp value set
 sql=sql.concat("'"+device_user+"',");//temp value set
 sql=sql.concat("'"+pwd+"',");//temp value set
 sql=sql.concat("'"+tokenisedobj.data.AD["Gas Leak"]+"',");
@@ -469,7 +469,7 @@ function getServerDate(){
 function insertIntodevice_log_historical(){
     connection=createConnection();
 var sql_device_log_historical="INSERT INTO device_log_historical(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,sim_detail,ip_address,power_level,gas_leak,low_gas,coordinates) VALUES(";
-sql_device_log_historical=sql_device_log_historical.concat("'"+device_id+"',");//temp value set
+sql_device_log_historical=sql_device_log_historical.concat("'"+temp_device_id+"',");//temp value set
 sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Tank Pressure"]+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Line Pressure"]+"',");
 sql_device_log_historical=sql_device_log_historical.concat("'"+tokenisedobj.data.AD["Tank Level"]+"',");
@@ -505,7 +505,7 @@ connection.connect(function(err){
 function Update_data_log_current(){
     connection=createConnection();
     var sql_device_log_current_update="INSERT INTO device_log_current(device_id,tank_pressure,line_pressure,gas_level,gas_detector,meter1,meter2,meter3,meter4,log_time,solenoid,power_level,customer_name,device_location,gas_leak,low_gas,coordinates) VALUES (";
-    sql_device_log_current_update=sql_device_log_current_update.concat("'"+device_id);
+    sql_device_log_current_update=sql_device_log_current_update.concat("'"+temp_device_id);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Tank Pressure"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Line Pressure"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Tank Level"]);
@@ -526,7 +526,7 @@ function Update_data_log_current(){
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.TH["Tank Level"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',' ')");
     sql_device_log_current_update=sql_device_log_current_update.concat(" ON DUPLICATE KEY UPDATE ");
-    sql_device_log_current_update=sql_device_log_current_update.concat("device_id='"+device_id);    
+    sql_device_log_current_update=sql_device_log_current_update.concat("device_id='"+temp_device_id);    
     sql_device_log_current_update=sql_device_log_current_update.concat("',tank_pressure='"+tokenisedobj.data.AD["Tank Pressure"]);    
     sql_device_log_current_update=sql_device_log_current_update.concat("',line_pressure='"+tokenisedobj.data.AD["Line Pressure"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',gas_level='"+tokenisedobj.data.AD["Tank Level"]);
@@ -556,7 +556,7 @@ function Update_data_log_current(){
 function insert_session_log(){
     connection=createConnection();
     var sql_session_log="INSERT INTO session_log(device_id,log_time,data) VALUES (";
-    var sql_session_log=sql_session_log.concat("'"+device_id+"',");
+    var sql_session_log=sql_session_log.concat("'"+temp_device_id+"',");
     var sql_session_log=sql_session_log.concat("'"+getServerDate()+"',");
     var sql_session_log=sql_session_log.concat("'"+message+"')");
     console.log(sql_session_log);
