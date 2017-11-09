@@ -38,6 +38,26 @@ app.post('/device/gaugesInfo', function(req, res){
 });
 });
 
+app.post('/getDevices', function(req, res){
+  connection=createConnection();
+ connection.connect(function(err){
+  connection.query("select distinct device_id from user_device_list", function (err, result, fields) {
+    if (err) throw err;
+    res.send(result);
+   }); 
+  });
+});
+
+app.post('/userAdmin', function(req, res){
+  connection=createConnection();
+ connection.connect(function(err){
+  connection.query("select user_name,email_id,contact_no,role from user_details", function (err, result, fields) {
+    if (err) throw err;
+    res.send(result);
+   }); 
+  });
+});
+
 app.post('/users/deviceList', function(req, res) {
 	  connection=createConnection();
  connection.connect(function(err){
