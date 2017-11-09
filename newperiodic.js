@@ -79,7 +79,6 @@ function get_state_updated(res,exec){
        console.log("Connected");
        var device_id_query="Select device_id from user_device_list where session_id='"+message.split("&&")[0]+"'";
        console.log(device_id_query);
-       var temp_device_id;
        connection.query(device_id_query,function(err,result,fields){
         if(result.length==0)
             return " ";
