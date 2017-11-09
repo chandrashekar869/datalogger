@@ -45,7 +45,7 @@ app.get("/",function(req,res){
 
 
 app.post("/medlynkdevicelistener",function(req,res){
-    message=req.body.name;
+    message=req.body.message;
     console.log(message);
     breakdown=message.split(dlmPattern);
     if(message.split("&&")[2]==0){
