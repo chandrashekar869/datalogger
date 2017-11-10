@@ -68,8 +68,7 @@ app.post('/users/deviceList', function(req, res) {
     if (err) throw err;
     res.send(result);
     });
-   });
-    
+   });    
 });
 
 function getServerDate(){
@@ -113,6 +112,7 @@ app.post('/delete', function(req, res) {
 app.post('/device/updateSolenoid', function(req, res){
   var device_id = req.body.device_id;
   device_id = device_id.replace( /:/g, "" );
+  var date=getServerDate();
   var solenoid = req.body.solenoid;
   console.log("device_id :"+device_id+"solenoid : "+solenoid);
   connection=createConnection();
