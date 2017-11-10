@@ -2,7 +2,7 @@ const mysql=require('mysql');
 const express=require('express');
 const body_parser=require('body-parser');
 const app=express();
-
+var connection;
 app.use(body_parser.json())
 app.use(body_parser.urlencoded({
     extended:true
@@ -36,6 +36,7 @@ app.post('/device/gaugesInfo', function(req, res){
    }); 
   console.log("SELECT device_Id,gas_pressureA,gas_pressureB,gas_level,gas_detector,alarm,beacon,power_level,log_time,meter1,meter2,meter3,meter4,solenoid FROM data_log_current where device_Id='"+device_id+"'");
 });
+
 });
 
 app.get('/getDevices', function(req, res){
@@ -46,6 +47,7 @@ app.get('/getDevices', function(req, res){
     res.send(result);
    }); 
   });
+  
 });
 
 app.get('/userAdmin', function(req, res){
@@ -56,6 +58,7 @@ app.get('/userAdmin', function(req, res){
     res.send(result);
    }); 
   });
+  
 });
 
 app.post('/users/deviceList', function(req, res) {
@@ -69,7 +72,46 @@ app.post('/users/deviceList', function(req, res) {
     if (err) throw err;
     res.send(result);
     });
-   }); 
+   });
+    
+});
+
+function getServerDate(){
+  //get server date in datetime format
+      var server_date=new Date();
+      var month=server_date.getMonth()+1;
+      month=function(){
+          return month<10? "0"+month : ""+month;
+      }();
+      var server_datetime=server_date.getFullYear()+"-"+month+"-"+server_date.getDate()+" "+server_date.getHours()+":"+server_date.getMinutes()+":"+server_date.getSeconds();
+      console.log("Server_date"+server_datetime);
+      return server_datetime;
+  }
+
+app.post('/addUsers', function(req, res) {
+  var time=getServerDate();
+  connection=createConnection();
+  var data=req.body.data;
+  console.log("data",data);
+  var user_id=Math.floor(Math.random()*89999+10000);
+  connection.connect(function(err){
+  connection.query("INSERT into user_details(user_id,password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+user_id+"','"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')", function (err, result, fields) {});
+  data.assigned.map(function(temp_device_id){
+   connection.query("INSERT INTO user_device_list(user_id,device_id,device_password,session_id) VALUES ('"+user_id+"','"+temp_device_id+"','"+data.password+"','00000111')", function (err, result, fields) {});
+  });
+      });
+  
+});
+
+app.post('/delete', function(req, res) {
+  var data=req.body.data;
+  connection=createConnection();
+  connection.connect(function(err){
+    connection.query("Delete from user_device_list where user_id IN (Select user_id from user_details where email_id='"+data.email_id+"')");
+    connection.query("Delete from user_details where email_id='"+data.email_id+"'", function (err, result, fields) {});
+    console.log("Delete from user_details where user_id IN (Select user_id from user_details where email_id='"+data.email_id+"')");
+  });
+  
 });
 
 app.listen(3200);
