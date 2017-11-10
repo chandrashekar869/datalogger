@@ -10,7 +10,7 @@ app.use(body_parser.urlencoded({
 
 app.use(function (req, res, next){
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://40.71.199.63:8080');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Request headers you wish to allow
@@ -108,7 +108,7 @@ app.post('/delete', function(req, res) {
   connection=createConnection();
   connection.connect(function(err){
     connection.query("Delete from user_device_list where user_id IN (Select user_id from user_details where email_id='"+data.email_id+"')");
-    connection.query("Delete from user_details where email_id='"+data.email_id+"'", function (err, result, fields) {});
+    connection.query("Delete from user_details where name='"+data.user_name+"' email_id='"+data.email_id+"'", function (err, result, fields) {});
     console.log("Delete from user_details where user_id IN (Select user_id from user_details where email_id='"+data.email_id+"')");
   });
   
@@ -137,7 +137,7 @@ function createConnection(){
         user:"root",
         host:"localhost",
         password:"root",
-        database:"data_logger"
+        database:"data_logger_db"
     }
     );
 }
