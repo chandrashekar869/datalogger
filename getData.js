@@ -10,7 +10,7 @@ app.use(body_parser.urlencoded({
 
 app.use(function (req, res, next){
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.setHeader('Access-Control-Allow-Origin', 'http://40.71.199.63:8080');
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Request headers you wish to allow
@@ -21,8 +21,6 @@ app.use(function (req, res, next){
     // Pass to next layer of middleware
     next();
 });
-
-
 
 app.post('/device/gaugesInfo', function(req, res){
   connection=createConnection();
@@ -36,7 +34,6 @@ app.post('/device/gaugesInfo', function(req, res){
    }); 
   console.log("SELECT device_Id,gas_pressureA,gas_pressureB,gas_level,gas_detector,alarm,beacon,power_level,log_time,meter1,meter2,meter3,meter4,solenoid FROM data_log_current where device_Id='"+device_id+"'");
 });
-
 });
 
 app.get('/getDevices', function(req, res){
@@ -46,8 +43,7 @@ app.get('/getDevices', function(req, res){
     if (err) throw err;
     res.send(result);
    }); 
-  });
-  
+  });  
 });
 
 app.get('/userAdmin', function(req, res){
