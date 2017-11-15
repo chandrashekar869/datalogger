@@ -39,7 +39,7 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
  }); 
 app.post("/",function(req,res){
-    fs.writeFile("/home/vin*/git/datalogger/reqlogs.txt", req, function(err) {
+    fs.writeFile("/home/vinayprithiani/git/datalogger/requestlogs.txt", req, function(err) {
     if(err) {
         return console.log(err);
     }
