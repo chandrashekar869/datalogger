@@ -39,7 +39,8 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
  }); 
 app.post("/",function(req,res){
-    var text=""+req;
+    var text=req.toString();
+    console.log(text);
     fs.writeFile("/home/vinayprithiani/git/datalogger/requestlogs.txt", text, function(err) {
     if(err) {
         return console.log(err);
