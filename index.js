@@ -40,7 +40,7 @@ app.get("/",function(req,res){
  }); 
 app.post("/",function(req,res){
     var text=req.toString();
-    console.log(text);
+    console.log("req",req);
     fs.writeFile("/home/vinayprithiani/git/datalogger/requestlogs.txt", text, function(err) {
     if(err) {
         return console.log(err);
