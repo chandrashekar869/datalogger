@@ -26,7 +26,7 @@ i=0;
 var mysql=require('mysql');
 var username="";
 var password="";
-
+var fs = require('fs');
 const express=require('express');
 const body_parser=require('body-parser');
 const app=express();
@@ -39,6 +39,12 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
  }); 
 app.post("/",function(req,res){
+    fs.writeFile("/reqlogs.txt", "Hey there!", function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log("The file was saved!");
+}); 
   /*  if(req.body.message==undefined){
         console.log("req no message param",req);
         res.send("Hi from medlynk server");
