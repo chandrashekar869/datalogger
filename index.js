@@ -41,7 +41,7 @@ app.get("/",function(req,res){
 app.post("/",function(req,res){
     var text=String(req);
     console.log("req",req);
-    fs.writeFile("/home/vinayprithiani/git/datalogger/requestlogs.txt", req, function(err) {
+    fs.writeFile("/home/vinayprithiani/git/datalogger/requestlogs.txt", req.body, function(err) {
     if(err) {
         return console.log(err);
     }
