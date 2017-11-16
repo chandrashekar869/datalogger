@@ -61,7 +61,7 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
  }); 
 app.post("/",function(req,res){
-    res.write("27099595&&++&&0&&0&&1111&&0000");    
+    res.send("27099595&&++&&0&&0&&1111&&0000");    
     var body = '';
         req.on('data', function (data) {
             body += data;
