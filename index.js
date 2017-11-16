@@ -36,7 +36,7 @@ app.use(body_parser.urlencoded({
 
 var http=require('http');
 var qs = require('querystring');
-/*http.createServer(function(req,res){
+http.createServer(function(req,res){
     res.writeHead(200,{'content-type':'text/plain'});
         res.write("Hello");
     res.end("End");
@@ -54,9 +54,9 @@ var qs = require('querystring');
             // use post['blah'], etc.
         });
     
-}).listen(3000);*/
+}).listen(3000);
 
-app.get("/",function(req,res){
+/*app.get("/",function(req,res){
     console.log("Server running");
     res.sendFile("core.html",{root:__dirname});
  }); 
@@ -76,14 +76,14 @@ app.post("/",function(req,res){
             var post = qs.parse(body);
             // use post['blah'], etc.
         });
-    /*var text=String(req);
+    var text=String(req);
     console.log("req",req);
     fs.writeFile("/home/vinayprithiani/git/datalogger/requestlogs.txt","req"+req.body, function(err) {
     if(err) {
         return console.log(err);
     }
     console.log("The file was saved!");*/
-});
+//uncomment});
   /*  if(req.body.message==undefined){
         console.log("req no message param",req);
         res.send("Hi from medlynk server");
@@ -121,7 +121,7 @@ app.post("/",function(req,res){
     }
     
 });*/
-app.listen(3000);
+//app.listen(3000);
 
 function get_state_updated(res,exec){   
     connection=createConnection();
