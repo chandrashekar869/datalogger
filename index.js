@@ -36,7 +36,6 @@ app.use(body_parser.urlencoded({
 
 var http=require('http');
 http.createServer(function(req,res){
-    if (request.method == 'POST') {
         var body = '';
         request.on('data', function (data) {
             body += data;
@@ -50,7 +49,7 @@ http.createServer(function(req,res){
             var post = qs.parse(body);
             // use post['blah'], etc.
         });
-    }
+    
 }).listen(3000);
 
 /*app.get("/",function(req,res){
