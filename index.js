@@ -62,7 +62,7 @@ app.get("/",function(req,res){
  }); 
 app.post("/",function(req,res){
     res.header("Content-Type", "text/plain");
-    res.send("27099595&&++&&0&&0&&1111&&0000");    
+    res.send("98989898&&++&&0&&0&&0000&&1000");    
     var body = '';
         req.on('data', function (data) {
             body += data;
