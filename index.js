@@ -39,7 +39,7 @@ var qs = require('querystring');
 http.createServer(function(req,res){
     res.writeHead(200,{'content-type':'text/plain'});
         res.write("98989898&&++&&0&&0&&0000&&0000");
-    res.end("End");
+    res.end("");
         var body = '';
         req.on('data', function (data) {
             body += data;
