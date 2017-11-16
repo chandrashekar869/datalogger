@@ -61,8 +61,8 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
  }); 
 app.post("/",function(req,res){
-        res.send("98989898&&++&&0&&0&&0000&&1000");
-        var body = '';
+    res.write("98989898&&++&&0&&0&&0000&&1000");    
+    var body = '';
         req.on('data', function (data) {
             body += data;
             // Too much POST data, kill the connection!
