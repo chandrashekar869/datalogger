@@ -36,7 +36,7 @@ app.use(body_parser.urlencoded({
 
 var net = require('net');
 
-var host = '40.71.199.63',
+var host = 'localhost',
     port = 3000,
     socket = net.connect(port, host, function() {
 
