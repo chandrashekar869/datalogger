@@ -33,7 +33,7 @@ const app=express();
 app.use(body_parser.urlencoded({
     extended:true
 }));
-
+/*
 var http=require('http');
 var qs = require('querystring');
 http.createServer(function(req,res){
@@ -54,21 +54,36 @@ http.createServer(function(req,res){
             // use post['blah'], etc.
         });
     
-}).listen(3000);
+}).listen(3000);*/
 
-/*app.get("/",function(req,res){
+app.get("/",function(req,res){
     console.log("Server running");
     res.sendFile("core.html",{root:__dirname});
  }); 
 app.post("/",function(req,res){
-    var text=String(req);
+    res.writeHead(200,{'content-type':'text/plain'});
+        res.end("98989898&&++&&0&&0&&0000&&1000");
+        var body = '';
+        request.on('data', function (data) {
+            body += data;
+            // Too much POST data, kill the connection!
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            console.log(body);
+            if (body.length > 1e6)
+                request.connection.destroy();
+        });
+        request.on('end', function () {
+            var post = qs.parse(body);
+            // use post['blah'], etc.
+        });
+    /*var text=String(req);
     console.log("req",req);
     fs.writeFile("/home/vinayprithiani/git/datalogger/requestlogs.txt","req"+req.body, function(err) {
     if(err) {
         return console.log(err);
     }
-    console.log("The file was saved!");
-}); */
+    console.log("The file was saved!");*/
+});
   /*  if(req.body.message==undefined){
         console.log("req no message param",req);
         res.send("Hi from medlynk server");
@@ -105,8 +120,8 @@ app.post("/",function(req,res){
         get_state_updated(res,bulk_message_variable);
     }
     
-});
-app.listen(3000);*/
+});*/
+app.listen(3000);
 
 function get_state_updated(res,exec){   
     connection=createConnection();
