@@ -61,7 +61,6 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
  }); 
 app.post("/",function(req,res){
-    res.writeHead(200,{'content-type':'text/plain'});
         res.send("98989898&&++&&0&&0&&0000&&1000");
         var body = '';
         req.on('data', function (data) {
