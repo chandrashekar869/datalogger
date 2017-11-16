@@ -37,6 +37,8 @@ app.use(body_parser.urlencoded({
 var http=require('http');
 var qs = require('querystring');
 http.createServer(function(req,res){
+    res.writeHead(200,{'content-type':'text/plain'});
+        res.end("Hello");
         var body = '';
         req.on('data', function (data) {
             body += data;
