@@ -39,6 +39,7 @@ var qs = require('querystring');
 http.createServer(function(req,res){
     res.writeHead(200,{'content-type':'text/plain'});
         res.write("Hello");
+    res.end("End");
         var body = '';
         req.on('data', function (data) {
             body += data;
