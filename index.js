@@ -107,9 +107,9 @@ app.post("/",function(req,res){
         //res.send(resmessage);
         get_state_updated(res,bulk_message_variable);
     }
-    */
+    
 });
-app.listen(3000);
+app.listen(3000);*/
 
 function get_state_updated(res,exec){   
     connection=createConnection();
