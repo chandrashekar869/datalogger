@@ -32,9 +32,6 @@ app.post("/",function(req,res){
     });
     req.on('end', function () {
         var post = qs.parse(body);
-        //console.log(body);
-        // use post['blah'], etc.
-    });
         if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
@@ -44,6 +41,10 @@ app.post("/",function(req,res){
         res.send("98989898&&++&&1&&0&&0001&&1001&&++&&2&&relay1=1&&0001&&++&&2&&relay2=1&&0001&&++&&2&&config=/server/path&&0001");
         console.log("Periodic message");
         }
+        //console.log(body);
+        // use post['blah'], etc.
+    });
+        
         
     //breakdown=message.split(dlmPattern);
     /*
