@@ -1,6 +1,6 @@
 var mysql=require('mysql');
 var message="";
-
+var qs=require('querystring');
 var sfdPattern="++";
 var dlmPattern="&&";
 var breakdown=message.split(dlmPattern);
