@@ -16,7 +16,7 @@ app.use(body_parser.urlencoded({
     extended:true
 }));
  
-app.post("/",function(req,res){
+app.post("/medlynk",function(req,res){
     var body = '';
     req.on('data', function (data) {
         body += data;
