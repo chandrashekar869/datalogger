@@ -29,6 +29,12 @@ app.post("/",function(req,res){
         console.log(body);
        console.log("req",body);
         message=body;
+    });
+    req.on('end', function () {
+        var post = qs.parse(body);
+        //console.log(body);
+        // use post['blah'], etc.
+    });
         if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
@@ -39,13 +45,6 @@ app.post("/",function(req,res){
         console.log("Periodic message");
         }
         
-    });
-    req.on('end', function () {
-        var post = qs.parse(body);
-        //console.log(body);
-        // use post['blah'], etc.
-    });
-
     //breakdown=message.split(dlmPattern);
     /*
     if(message.split("&&")[2]==0){
