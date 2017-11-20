@@ -28,7 +28,7 @@ app.post("/",function(req,res){
         }
         if(message.split("&&")[2]==1){
             res.set('Content-Type', 'text/plain');
-        res.end("98989898&&++&&1&&0&&0001&&1001&&++&&2&&relay1=1&&0001&&++&&2&&relay2=1&&0001&&++&&2&&config=/server/path&&0001");
+        res.end("98989898&&++&&1&&0&&0001&&1001");
           console.log("Periodic message");
         }    
         });
