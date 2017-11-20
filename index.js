@@ -9,6 +9,8 @@ app.use(body_parser.urlencoded({
     extended:true
 }));
 app.post("/",function(req,res){
+    console.log("Started");
+    res.send("Hai");
     var body='';
     req.on('data', function (data) {
         console.log("request");
