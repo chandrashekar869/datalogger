@@ -22,7 +22,7 @@ app.post("/medlynk",function(req,res){
         body += data;
         // Too much POST data, kill the connection!
         // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-        console.log(body);
+        
         if (body.length > 1e6)
             req.connection.destroy();
     
@@ -48,6 +48,7 @@ app.post("/medlynk",function(req,res){
     });
     req.on('end', function () {
         var post = qs.parse(body);
+        console.log(body);
         // use post['blah'], etc.
     });
 
