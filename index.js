@@ -23,7 +23,7 @@ app.post("/",function(req,res){
             //login message
             console.log("Login message");
             res.set('Content-Type', 'text/plain');
-            res.end("98989899&&++&&0&&0&&0000&&0000");
+            res.end("54545454&&++&&0&&0&&0000&&0000");
          
         }
         if(message.split("&&")[2]==1){
@@ -31,7 +31,7 @@ app.post("/",function(req,res){
             var transid=split[split.length-1];
             console.log(transid);
             res.set('Content-Type', 'text/plain');
-        res.end("98989899&&++&&1&&0&&"+transid+"&&1001");
+        res.end("54545454&&++&&1&&0&&"+transid+"&&1001");
           console.log("Periodic message");
         }    
         });
