@@ -33,6 +33,7 @@ app.post("/",function(req,res){
         req.on('end', function () {
             var post = qs.parse(body);
         console.log(body);
+            res.sende("hey");
             /*    
         if(message.split("&&")[2]==0){
                 //login message
