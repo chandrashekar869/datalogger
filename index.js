@@ -26,7 +26,8 @@ app.post("/",function(req,res){
         if (body.length > 1e6)
             req.connection.destroy();
     
-    
+        console.log("body",body);
+        /*
         if(body==undefined){
             console.log("req no message param",req);
             res.send("Hi from medlynk server");
@@ -43,7 +44,7 @@ app.post("/",function(req,res){
         res.send("98989898&&++&&1&&0&&0001&&1001&&++&&2&&relay1=1&&0001&&++&&2&&relay2=1&&0001&&++&&2&&config=/server/path&&0001");
         console.log("Periodic message");
         }
-        }
+        }*/
     });
     req.on('end', function () {
         var post = qs.parse(body);
