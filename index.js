@@ -27,8 +27,11 @@ app.post("/",function(req,res){
          
         }
         if(message.split("&&")[2]==1){
+            var split=message.split("&&");
+            var transid=split[split.length-1];
+            console.log(transid);
             res.set('Content-Type', 'text/plain');
-        res.end("98989898&&++&&1&&0&&0001&&1001");
+        res.end("98989898&&++&&1&&0&&"+transid+"&&1000");
           console.log("Periodic message");
         }    
         });
