@@ -1,5 +1,6 @@
 var http=require('http');
 var qs=require('querystring');
+var message='';
 http.createServer(function(req,res){
     var body='';
     req.on('data', function (data) {
@@ -13,7 +14,7 @@ http.createServer(function(req,res){
         
             console.log(body);
     //       console.log("req",body);
-       //     message=body;
+      message=body;
         }); 
         req.on('end', function () {
             var post = qs.parse(body);
