@@ -31,7 +31,7 @@ app.post("/",function(req,res){
         console.log(body);
        console.log("req",body);
         message=body;
-    });
+    
     req.on('end', function () {
         var post = qs.parse(body);
         if(message.split("&&")[2]==0){
@@ -46,7 +46,7 @@ app.post("/",function(req,res){
         //console.log(body);
         // use post['blah'], etc.
     });
-        
+});    
         
     //breakdown=message.split(dlmPattern);
     /*
@@ -69,4 +69,3 @@ app.post("/",function(req,res){
     */
 });
 app.listen(3000);
-
