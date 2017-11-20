@@ -1,22 +1,6 @@
-var mysql=require('mysql');
-var message="";
+var http=require('http');
 var qs=require('querystring');
-var sfdPattern="++";
-var dlmPattern="&&";
-var breakdown=message.split(dlmPattern);
-var tokenisedobj={};
-var params=["msgid","data","time","transid"];
-var params_bulk=["data","time"];
-i=0;
-const express=require('express');
-const body_parser=require('body-parser');
-const app=express();
-
-app.use(body_parser.urlencoded({
-    extended:true
-}));
- 
-app.post("/",function(req,res){
+http.createServer(function(req,res){
     req.on('data', function (data) {
         console.log("request");
             body += data;
@@ -33,7 +17,6 @@ app.post("/",function(req,res){
         req.on('end', function () {
             var post = qs.parse(body);
         console.log(body);
-            res.sende("hey");
             /*    
         if(message.split("&&")[2]==0){
                 //login message
@@ -47,5 +30,4 @@ app.post("/",function(req,res){
             //console.log(body);
             // use post['blah'], etc.
         });
-});
-app.listen(3000);
+}).listen(3000);
