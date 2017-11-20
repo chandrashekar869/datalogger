@@ -17,6 +17,7 @@ app.use(body_parser.urlencoded({
 }));
  
 app.post("/",function(req,res){
+    console.log("request");
     var body = '';
     req.on('data', function (data) {
         body += data;
