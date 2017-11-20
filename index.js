@@ -39,4 +39,5 @@ app.post("/",function(req,res){
             //console.log(body);
             // use post['blah'], etc.
         });
-}).listen(3000);
+});
+app.listen(3000);
