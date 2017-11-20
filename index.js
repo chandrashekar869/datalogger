@@ -11,11 +11,12 @@ i=0;
 const express=require('express');
 const body_parser=require('body-parser');
 const app=express();
+
 app.use(body_parser.urlencoded({
     extended:true
 }));
  
-app.post("/medlynk",function(req,res){
+app.post("/",function(req,res){
     var body = '';
     req.on('data', function (data) {
         body += data;
@@ -24,29 +25,31 @@ app.post("/medlynk",function(req,res){
         console.log(body);
         if (body.length > 1e6)
             req.connection.destroy();
+    
+    
+        if(body==undefined){
+            console.log("req no message param",req);
+            res.send("Hi from medlynk server");
+        }
+        else{
+        console.log("req",body);
+        message=body;
+        if(message.split("&&")[2]==0){
+            //login message
+            console.log("Login message");
+            res.send("98989898&&++&&0&&0&&0000&&0000");
+        }
+        if(message.split("&&")[2]==1){
+        res.send("98989898&&++&&1&&0&&0001&&1001&&++&&2&&relay1=1&&0001&&++&&2&&relay2=1&&0001&&++&&2&&config=/server/path&&0001");
+        console.log("Periodic message");
+        }
+        }
     });
     req.on('end', function () {
         var post = qs.parse(body);
         // use post['blah'], etc.
     });
 
-    if(body==undefined){
-        console.log("req no message param",req);
-        res.send("Hi from medlynk server");
-    }
-    else{
-    console.log("req",body);
-    message=body;
-    if(message.split("&&")[2]==0){
-        //login message
-        console.log("Login message");
-        res.send("98989898&&++&&0&&0&&0000&&0000");
-    }
-    if(message.split("&&")[2]==1){
-    res.send("98989898&&++&&1&&0&&0001&&1001&&++&&2&&relay1=1&&0001&&++&&2&&relay2=1&&0001&&++&&2&&config=/server/path&&0001");
-    console.log("Periodic message");
-    }
-    }
     //breakdown=message.split(dlmPattern);
     /*
     if(message.split("&&")[2]==0){
