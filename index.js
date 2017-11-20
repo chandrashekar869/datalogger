@@ -5,7 +5,6 @@ var qs=require('querystring');
 var message='';
 app.post("/",function(req,res){
     console.log("Started");
-    res.send("Hai");
     var body='';
     req.on('data', function (data) {
         console.log("request");
