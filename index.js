@@ -1,7 +1,14 @@
-
+const express=require('express');
+const body_parser=require('body-parser');
+const app=express();
 var http=require('http');
 var qs=require('querystring');
-http.createServer(function(req,res){
+
+app.use(body_parser.urlencoded({
+    extended:true
+}));
+
+app.post("/",function(req,res){
     var body='';
     req.on('data', function (data) {
         console.log("request");
