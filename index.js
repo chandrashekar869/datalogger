@@ -1,14 +1,6 @@
-const express=require('express');
-const body_parser=require('body-parser');
-const app=express();
 var http=require('http');
 var qs=require('querystring');
-
-app.use(body_parser.urlencoded({
-    extended:true
-}));
-
-app.post("/",function(req,res){
+http.createServer(function(req,res){
     var body='';
     req.on('data', function (data) {
         console.log("request");
@@ -39,5 +31,4 @@ app.post("/",function(req,res){
             //console.log(body);
             // use post['blah'], etc.
         });
-});
-app.listen(3000);
+}).listen(3000);
