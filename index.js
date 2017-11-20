@@ -17,7 +17,6 @@ app.use(body_parser.urlencoded({
 }));
  
 app.post("/",function(req,res){
-    
     var body = '';
     req.on('data', function (data) {
     console.log("request");
@@ -29,12 +28,12 @@ app.post("/",function(req,res){
             req.connection.destroy();
     
         console.log(body);
-       console.log("req",body);
-        message=body;
-    
+//       console.log("req",body);
+   //     message=body;
+    }); 
     req.on('end', function () {
         var post = qs.parse(body);
-        if(message.split("&&")[2]==0){
+    /*    if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
             res.send("98989898&&++&&0&&0&&0000&&0000");
@@ -42,30 +41,9 @@ app.post("/",function(req,res){
         if(message.split("&&")[2]==1){
         res.send("98989898&&++&&1&&0&&0001&&1001&&++&&2&&relay1=1&&0001&&++&&2&&relay2=1&&0001&&++&&2&&config=/server/path&&0001");
         console.log("Periodic message");
-        }
+        }*/
         //console.log(body);
         // use post['blah'], etc.
     });
-});    
-        
-    //breakdown=message.split(dlmPattern);
-    /*
-    if(message.split("&&")[2]==0){
-        //login message
-        validateDevice(res);
-    }
-    if(message.split("&&")[2]==1){
-        console.log("periodic");
-    //var resmessage=periodic_message();
-     //   res.send(resmessage);
-    get_state_updated(res,periodic_message_variable);
-    }
-    if(message.split("&&")[2]==2){
-        //bulk message
-       // var resmessage=bulk_message();
-        //res.send(resmessage);
-        get_state_updated(res,bulk_message_variable);
-    }
-    */
 });
 app.listen(3000);
