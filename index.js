@@ -23,10 +23,12 @@ app.post("/",function(req,res){
             //login message
             console.log("Login message");
             res.send("98989898&&++&&0&&0&&0000&&0000");
+            res.end("");
         }
         if(message.split("&&")[2]==1){
         res.send("98989898&&++&&1&&0&&0001&&1001&&++&&2&&relay1=1&&0001&&++&&2&&relay2=1&&0001&&++&&2&&config=/server/path&&0001");
-        console.log("Periodic message");
+            res.end("");
+            console.log("Periodic message");
         }    
         });
 });
