@@ -52,8 +52,8 @@ var qs=require('querystring');
 var message='';
 app.post("/",function(req,res){
     console.log("recieved");
-  res.header("Content-Type", "text/html");
-  res.end("recieved");
+res.send(JSON.stringify('success'));
+
 });
     app.listen(3000);
 
