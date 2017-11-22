@@ -44,19 +44,11 @@ http.createServer("/",function(req,res){
 
 
 
-const express=require('express');
-const body_parser=require('body-parser');
-const app=express();
-app.use(body_parser.json());
-app.use(body_parser.urlencoded({
-    extended:true
-}));
-var qs=require('querystring');
-var message='';
-app.post("/",function(req,res){
-    console.log("recieved");
-res.send(JSON.stringify('success'));
-});
+var express = require('express')
+var app = express()
+app.post('/', function (req, res) {
+  res.send('POST request to the homepage')
+})
     app.listen(3200);
 
 
