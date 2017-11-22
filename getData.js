@@ -254,7 +254,7 @@ function createConnection(){
         user:"root",
         host:"localhost",
         password:"root",
-        database:"data_logger_db"
+        database:"data_logger"
     }
     );
 }
