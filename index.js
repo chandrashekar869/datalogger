@@ -52,7 +52,7 @@ var qs=require('querystring');
 var message='';
 app.post("/",function(req,res){
     
-res.send("message recieved");   
+res.end("message recieved");   
 });
     app.listen(3000);
 
