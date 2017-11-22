@@ -1,3 +1,12 @@
+var express        =         require("express");
+var bodyParser     =         require("body-parser");
+var app            =         express();
+app.post('/',function(req,res){
+  res.end("yes");
+});
+app.listen(3000,function(){
+  console.log("Started on PORT 3000");
+})
 /*var mysql=require('mysql');
 var qs=require('querystring');
 var device_id="";
@@ -29,17 +38,16 @@ var mysql=require('mysql');
 var username="";
 var password="";
 
-*/
+
 var express=require('express');
 var body_parser=require('body-parser');
 var app=express();
 
-/*
 app.get("/",function(req,res){
    console.log("Server running");
     res.sendFile("core.html",{root:__dirname});
 });
-*/
+
 app.post("/",function(req,res){
     console.log("Started");
     var body='';
@@ -55,7 +63,7 @@ app.post("/",function(req,res){
         message=body;    
     }); 
         req.on('end', function () {
-   //       var post = qs.parse(body);
+          var post = qs.parse(body);
         if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
@@ -67,7 +75,7 @@ app.post("/",function(req,res){
     get_state_updated(res,periodic_message_variable);
         }    
         });
-});
+});*/
 /*
 app.post("/medlynkdevicelistener",function(req,res){
     message=req.body.message;
