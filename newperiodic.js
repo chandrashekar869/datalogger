@@ -43,7 +43,7 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
 });
 
-app.post("/medlynkdevicelistener",function(req,res){
+app.post("/",function(req,res){
     console.log("Started");
     var body='';
     req.on('data', function (data) {
@@ -119,7 +119,7 @@ function get_state_updated(res,exec){
          if(result.length==0)
                 {
                     var resmessage=exec(res);
-                    res.send("<br /><br /><br /><br /><h2 align='center'>DATA LOGGER TEST PAGE</h2><br /><br /><br /><br /><h3 align='center'>Message:Device Data Logged successfully</h3><h4 align='center'>Response:"+resmessage+"</h4>");
+                    res.send(resmessage);
            
                 }
             else{    
@@ -128,11 +128,11 @@ function get_state_updated(res,exec){
                 if(result.device_state_updated==1){
                     console.log(result.solenoid);
                     var rs_split_msg=message.split("&&");
-                    res.send("<br /><br /><br /><br /><h2 align='center'>DATA LOGGER TEST PAGE</h2><br /><br /><br /><br /><h3 align='center'>Message:Device Data Logged successfully</h3><h4 align='center'>Response:"+rs_split_msg[0]+"&&"+rs_split_msg[1]+"&&"+rs_split_msg[2]+"&&a1="+result.solenoid+"&&a2=999&&a3=100&&"+rs_split_msg.pop()+"</h4>");
+                    res.send(rs_split_msg[0]+"&&"+rs_split_msg[1]+"&&"+rs_split_msg[2]+"&&a1="+result.solenoid+"&&a2=999&&a3=100&&"+rs_split_msg.pop());
                 }
                 else{
                     var resmessage=exec();
-                    res.send("<br /><br /><br /><br /><h2 align='center'>DATA LOGGER TEST PAGE</h2><br /><br /><br /><br /><h3 align='center'>Message:Device Data Logged successfully</h3><h4 align='center'>Response:"+resmessage+"</h4>");
+                    res.send(resmessage);
                 }
             }
                 //Not required to handle table empty constraint as table is prepopulated 
@@ -160,12 +160,14 @@ function validateDevice(res){
         console.log(device_id_query);
         connection.query(device_id_query,function(err,result,fields){
             if(result.length==0){
-                res.send("<br /><br /><br /><br /><h2 align='center'>DATA LOGGER TEST PAGE</h2><br /><br /><br /><br /><h2 align='center'>Message:Authentication Failed</h2>"+"<br /><br /><h3 align='center'>Response:"+login_tokenised_message.dummy_session_id+"&&"+login_tokenised_message.sfd+"&&"+login_tokenised_message.msgid+"&&"+1+"&&req_id&&"+login_tokenised_message.Trans_Id+"</h3>");                    
+                var a=1234;
+                res.send(login_tokenised_message.dummy_session_id+"&&"+login_tokenised_message.sfd+"&&"+login_tokenised_message.msgid+"&&"+1+"&&"+a+"&&"+login_tokenised_message.Trans_Id);                    
+            a++;
             }
             else{
                     var sessid_new=Math.floor(Math.random()*89999999+10000000);
                     update_user_device_list(sessid_new,login_tokenised_message.devid);
-                    res.send("<br /><br /><br /><br /><h2 align='center'>DATA LOGGER TEST PAGE</h2><br /><br /><br /><br /><h2 align='center'>Message:Authentication Successfull</h2>"+"<br /><br /><h3 align='center'>Response:"+sessid_new+"&&"+login_tokenised_message.sfd+"&&"+login_tokenised_message.msgid+"&&"+0+"&&req_id&&"+login_tokenised_message.Trans_Id+"</h3>");    
+                    res.send(sessid_new+"&&"+login_tokenised_message.sfd+"&&"+login_tokenised_message.msgid+"&&"+0+"&&req_id&&"+login_tokenised_message.Trans_Id);    
                     
                 }
         });
@@ -297,7 +299,9 @@ var bulk_message_variable=function bulk_message(){
     //if(
       //  insert_session_log()==0
     //)
-    var bulk_response=tokenisedobj.sessid+"&&"+tokenisedobj.sfd+"&&"+tokenisedobj.msgid+"&&"+0+"&&req_tid&&"+tokenisedobj.transid;
+    var a=3421;
+    var bulk_response=tokenisedobj.sessid+"&&"+tokenisedobj.sfd+"&&"+tokenisedobj.msgid+"&&"+0+"&&"+a+"&&"+tokenisedobj.transid;
+    a++;
     //else
     //var bulk_response=tokenisedobj.sessid+"&&"+tokenisedobj.sfd+"&&"+tokenisedobj.msgid+"&&"+1+"&&req_tid&&"+tokenisedobj.transid;
     
@@ -339,8 +343,9 @@ for(i=0;i<=breakdown.length;i++){
 }
 console.log(tokenisedobj);
 var periodic_response;
-periodic_response=periodic_response=tokenisedobj.sessid+"&&"+tokenisedobj.sfd+"&&"+tokenisedobj.msgid+"&&"+0+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
-
+        var a=6453;
+periodic_response=periodic_response=tokenisedobj.sessid+"&&"+tokenisedobj.sfd+"&&"+tokenisedobj.msgid+"&&"+0+"&&"+a+"&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
+a++;
 //periodic_status=insert_session_log();
 //if(status==false){
 
