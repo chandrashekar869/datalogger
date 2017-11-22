@@ -47,15 +47,8 @@ var app            =         express();
 var qs = require("querystring");
 app.post('/',function(req,res){
    var body='';
-    req.on('data', function (data) {
-        console.log("request");
-            body += data;
-            if (body.length > 1e6)
-                req.connection.destroy();
-            console.log(body);
-        message=body;    
-    }); 
-       
+  
+console.log(req.body.message);       
     res.end("yes");
     
 });
