@@ -43,8 +43,35 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
 });
 
-
-
+app.post("/",function(req,res){
+    console.log("Started");
+    var body='';
+    req.on('data', function (data) {
+        console.log("request");
+            body += data;
+            // Too much POST data, kill the connection!
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            
+            if (body.length > 1e6)
+                req.connection.destroy();
+            console.log(body);
+        message=body;    
+    }); 
+        req.on('end', function () {
+          var post = qs.parse(body);
+        if(message.split("&&")[2]==0){
+            //login message
+            console.log("Login message");
+        validateDevice(res);
+         
+        }
+        if(message.split("&&")[2]==1){
+            res.set('Content-Type', 'text/plain');
+    get_state_updated(res,periodic_message_variable);
+        }    
+        });
+});
+/*
 app.post("/medlynkdevicelistener",function(req,res){
     message=req.body.message;
     console.log(message);
@@ -68,6 +95,7 @@ app.post("/medlynkdevicelistener",function(req,res){
 
 });
 
+*/
 
 
 app.listen(3000);
