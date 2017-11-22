@@ -1,9 +1,10 @@
 
 const express=require('express');
+var http=require('http');
 const app=express();
 var qs=require('querystring');
 var message='';
-app.post("/",function(req,res){
+http.createServer("/",function(req,res){
     console.log("Started");
     var body='';
     req.on('data', function (data) {
