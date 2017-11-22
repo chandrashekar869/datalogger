@@ -1,4 +1,4 @@
-
+/*
 const express=require('express');
 var http=require('http');
 const app=express();
@@ -23,7 +23,7 @@ http.createServer("/",function(req,res){
         if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
-            res.header('Content-Type', 'text/plain');
+       //     res.header('Content-Type', 'text/plain');
             res.end("12121212&&++&&0&&0&&0000&&0000");
          
         }
@@ -36,4 +36,27 @@ http.createServer("/",function(req,res){
           console.log("Periodic message");
         }    
         });
-}).listen(3000);
+})
+    app.listen(3000);
+*/
+
+
+
+
+
+
+const express=require('express');
+var http=require('http');
+const app=express();
+var qs=require('querystring');
+var message='';
+app.post("/",function(req,res){
+    
+res.send("message recieved");   
+});
+    app.listen(3000);
+
+
+
+
+
