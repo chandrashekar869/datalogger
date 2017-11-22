@@ -62,7 +62,7 @@ app.post("/",function(req,res){
          
         }
         if(message.split("&&")[2]==1){
-            res.set('Content-Type', 'text/plain');
+            res.set("Content-Type", "text/plain");
     get_state_updated(res,periodic_message_variable);
         }    
         });
@@ -115,7 +115,7 @@ function get_state_updated(res,exec){
          if(result.length==0)
                 {
                     var resmessage=exec(res);
-                    res.send(resmessage);
+                    res.end(resmessage);
                      
                 }
             else{    
@@ -124,7 +124,7 @@ function get_state_updated(res,exec){
                 if(result.device_state_updated==1){
                     console.log(result.solenoid);
                     var rs_split_msg=message.split("&&");
-                    res.send(rs_split_msg[0]+"&&"+rs_split_msg[1]+"&&"+rs_split_msg[2]+"&&a1="+result.solenoid+"&&a2=999&&a3=100&&"+rs_split_msg.pop());
+                    res.end(""+rs_split_msg[0]+"&&"+rs_split_msg[1]+"&&"+rs_split_msg[2]+"&&a1="+result.solenoid+"&&a2=999&&a3=100&&"+rs_split_msg.pop()+"");
                 }
                 else{
                     var resmessage=exec();
@@ -157,14 +157,15 @@ function validateDevice(res){
         connection.query(device_id_query,function(err,result,fields){
             if(result.length==0){
                 var a=1234;
-                res.send(login_tokenised_message.dummy_session_id+"&&"+login_tokenised_message.sfd+"&&"+login_tokenised_message.msgid+"&&"+1+"&&"+a+"&&"+login_tokenised_message.Trans_Id);                    
+               res.end("login successfull");
+               // res.send(login_tokenised_message.dummy_session_id+"&&"+login_tokenised_message.sfd+"&&"+login_tokenised_message.msgid+"&&"+1+"&&"+a+"&&"+login_tokenised_message.Trans_Id);                    
             a++;
             }
             else{
                     var sessid_new=Math.floor(Math.random()*89999999+10000000);
                     update_user_device_list(sessid_new,login_tokenised_message.devid);
-                    res.send(sessid_new+"&&"+login_tokenised_message.sfd+"&&"+login_tokenised_message.msgid+"&&"+0+"&&req_id&&"+login_tokenised_message.Trans_Id);    
-                    
+                 //   res.send(sessid_new+"&&"+login_tokenised_message.sfd+"&&"+login_tokenised_message.msgid+"&&"+0+"&&req_id&&"+login_tokenised_message.Trans_Id);    
+                                   res.end("login unsuccessfull");
                 }
         });
     }); 
