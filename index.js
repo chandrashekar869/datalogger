@@ -36,5 +36,4 @@ http.createServer("/",function(req,res){
           console.log("Periodic message");
         }    
         });
-});
-app.listen(3000);
+}).listen(3000);
