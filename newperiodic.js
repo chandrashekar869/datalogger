@@ -1,4 +1,4 @@
-var mysql=require('mysql');
+/*var mysql=require('mysql');
 var qs=require('querystring');
 var device_id="";
 var device_user="temp user name2";
@@ -29,16 +29,17 @@ var mysql=require('mysql');
 var username="";
 var password="";
 
-const express=require('express');
-const body_parser=require('body-parser');
-const app=express();
+*/
+var express=require('express');
+var body_parser=require('body-parser');
+var app=express();
 
-
+/*
 app.get("/",function(req,res){
    console.log("Server running");
     res.sendFile("core.html",{root:__dirname});
 });
-
+*/
 app.post("/",function(req,res){
     console.log("Started");
     var body='';
@@ -54,7 +55,7 @@ app.post("/",function(req,res){
         message=body;    
     }); 
         req.on('end', function () {
-          var post = qs.parse(body);
+   //       var post = qs.parse(body);
         if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
