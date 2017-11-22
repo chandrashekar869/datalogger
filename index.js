@@ -38,7 +38,7 @@ http.createServer("/",function(req,res){
         });
 })
     app.listen(3000);
-*/
+
 
 var express        =         require("express");
 var bodyParser     =         require("body-parser");
@@ -57,8 +57,12 @@ console.log(req.body.message);
 app.listen(3200,function(){
   console.log("Started on PORT 3000");
 })
-
-
+*/
+var http=require('http');
+http.createServer(function(req,res){
+res.writeHead(200,{'Content-type':'text/plain'});
+    res.end("hello");
+}).listen(8080);
 
 
 
