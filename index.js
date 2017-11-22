@@ -23,7 +23,7 @@ app.post("/",function(req,res){
             //login message
             console.log("Login message");
             //res.set('Content-Type', 'text/plain');
-            res.end("12121212&&++&&0&&0&&0000&&0000");
+            res.send("12121212&&++&&0&&0&&0000&&0000");
          
         }
         if(message.split("&&")[2]==1){
