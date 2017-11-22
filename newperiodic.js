@@ -152,7 +152,7 @@ function validateDevice(res){
     connection.connect(function(err){
         if(err) throw err;
         console.log("Connected");
-        var device_id_query="Select * from user_device_list where device_id='"+login_tokenised_message.devid+"' AND device_password='"+login_tokenised_message.pwd+"'";
+        var device_id_query="Select * from devicelist where device_id='"+login_tokenised_message.devid+"' AND device_password='"+login_tokenised_message.pwd+"'";
         console.log(device_id_query);
         connection.query(device_id_query,function(err,result,fields){
             if(result.length==0){
