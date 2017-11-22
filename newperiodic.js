@@ -58,8 +58,8 @@ app.post("/",function(req,res){
         if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
-        validateDevice(res);
-         
+        //validateDevice(res);
+         res.end("recieved");
         }
         if(message.split("&&")[2]==1){
             res.set("Content-Type", "text/plain");
