@@ -43,7 +43,7 @@ app.get("/",function(req,res){
     res.sendFile("core.html",{root:__dirname});
 });
 
-app.post("/",function(req,res){
+app.post("/medlynkdevicelistener",function(req,res){
     console.log("Started");
     var body='';
     req.on('data', function (data) {
