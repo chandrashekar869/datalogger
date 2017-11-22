@@ -55,12 +55,7 @@ app.post('/',function(req,res){
             console.log(body);
         message=body;    
     }); 
-        req.on('end', function () {
-          var post = qs.parse(body);
-        if(message.split("&&")[2]==0){
-            console.log("Login message");
-         }  
-        });
+       
     res.end("yes");
     
 });
