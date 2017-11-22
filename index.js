@@ -46,7 +46,23 @@ var app            =         express();
 
 
 app.post('/',function(req,res){
-  res.end("yes");
+   var body='';
+    req.on('data', function (data) {
+        console.log("request");
+            body += data;
+            if (body.length > 1e6)
+                req.connection.destroy();
+            console.log(body);
+        message=body;    
+    }); 
+        req.on('end', function () {
+          var post = qs.parse(body);
+        if(message.split("&&")[2]==0){
+            console.log("Login message");
+         }  
+        });
+    res.end("yes");
+    
 });
 app.listen(3200,function(){
   console.log("Started on PORT 3000");
