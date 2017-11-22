@@ -47,7 +47,7 @@ var app            =         express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/login',function(req,res){
+app.post('/',function(req,res){
   res.end("yes");
 });
 app.listen(3200,function(){
