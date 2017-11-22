@@ -43,6 +43,8 @@ http.createServer("/",function(req,res){
 var express        =         require("express");
 var bodyParser     =         require("body-parser");
 var app            =         express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 var qs = require("querystring");
 app.post('/',function(req,res){
