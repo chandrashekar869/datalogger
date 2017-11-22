@@ -1,4 +1,5 @@
 var mysql=require('mysql');
+var qs=require('querystring');
 var device_id="";
 var device_user="temp user name2";
 var pwd="temp password2";
