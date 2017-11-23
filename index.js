@@ -39,8 +39,21 @@ app.post("/",function(req,res){
             console.log(body);
         message=body;    
     }); 
-    res.send("response message express");/*
-    console.log(req.body.message);
-    res.send("res message");*/
+    req.on('end', function () {
+          var post = qs.parse(body);
+        if(message.split("&&")[2]==0){
+            //login message
+            console.log("Login message");
+         res.send("98989898&&++&&0&&0&&0000&&1000");
+        }
+        if(message.split("&&")[2]==1){
+            console.log("Periodic message");
+            var split=message.split("&&");
+            var transid=split[4];
+            console.log("transid:"+transid);
+            console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
+            res.send("98989898&&++&&1&&0&&"+transid+"&&1001");
+        }    
+        });
  });
 app.listen(3000);
