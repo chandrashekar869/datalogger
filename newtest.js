@@ -1,6 +1,6 @@
 var http=require('http');
 var queryData="";
-var querystring=require('querystring');
+var qs=require('querystring');
 http.createServer(function(request, response) {
     request.on('data', function(data) {
         queryData += data;
