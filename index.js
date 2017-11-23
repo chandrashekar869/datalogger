@@ -44,7 +44,7 @@ app.post("/",function(req,res){
         if(message.split("AA")[2]==0){
             //login message
             console.log("Login message");
-         res.end("98989898&&++&&0&&0&&0000&&1000");
+         res.end("98989898AAPPAA0AA0AA0000AA1000");
         }
         if(message.split("AA")[2]==1){
             console.log("Periodic message");
@@ -52,7 +52,7 @@ app.post("/",function(req,res){
             var transid=split[4];
             console.log("transid:"+transid);
             console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
-            res.send("98989898&&++&&1&&0&&"+transid+"&&1001");
+            res.send("98989898AAPPAA1AA0AA"+transid+"AA1001");
         }    
         });
  });
