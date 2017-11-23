@@ -13,5 +13,5 @@ http.createServer(function(req,res){
         //message=body;    
     }); 
     res.end("response message");
-}).listen(8080);
+}).listen(3000);
 
