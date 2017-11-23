@@ -41,12 +41,12 @@ app.post("/",function(req,res){
     }); 
     req.on('end', function () {
           var post = qs.parse(body);
-        if(message.split("a")[2]==0){
+        if(message.split("aa")[2]==0){
             //login message
             console.log("Login message");
          res.end("98989898&&++&&0&&0&&0000&&1000");
         }
-        if(message.split("&&")[2]==1){
+        if(message.split("aa")[2]==1){
             console.log("Periodic message");
             var split=message.split("&&");
             var transid=split[4];
