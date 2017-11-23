@@ -26,7 +26,7 @@ var qs=require('querystring');
     extended:true
 }));*/
 app.post("/",function(req,res){
-    console.log("Started");/*
+    console.log("Started");
    var body='';
     req.on('data', function (data) {
         console.log("request");
@@ -38,7 +38,7 @@ app.post("/",function(req,res){
                 req.connection.destroy();
             console.log(body);
         message=body;    
-    }); 
+    }); /*
     req.on('end', function () {
           var post = qs.parse(body);
         if(message.split("&&")[2]==0){
