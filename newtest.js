@@ -10,7 +10,7 @@ http.createServer(function(request, response) {
         if(queryData.split("AA")[2]==0){
             //login message
             console.log("Login message");
-         res.end("98989898AA++AA0AA0AA0000AA1000");
+         response.end("98989898AA++AA0AA0AA0000AA1000");
         }
     });
     console.log(queryData);   
