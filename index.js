@@ -21,7 +21,7 @@ http.createServer(function(req,res){
 var express=require('express');
 var body_parser=require('body-parser');
 var app=express();
-//var qs=require('querystring');
+var qs=require('querystring');
 /*app.use(body_parser.urlencoded({
     extended:true
 }));*/
