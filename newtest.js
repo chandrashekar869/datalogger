@@ -6,7 +6,7 @@ http.createServer(function(request, response) {
         queryData += data;
      });
      request.on('end', function () {
-        var POST = qs.parse(body); 
+        var POST = qs.parse(queryData); 
         if(queryData.split("AA")[2]==0){
             //login message
             console.log("Login message");
