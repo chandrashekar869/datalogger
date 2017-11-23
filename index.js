@@ -26,7 +26,7 @@ var qs=require('querystring');
     extended:true
 }));*/
 app.post("/",function(req,res){
-    console.log("Started");
+    console.log("Started");/*
    var body='';
     req.on('data', function (data) {
         console.log("request");
@@ -54,6 +54,7 @@ app.post("/",function(req,res){
             console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
             res.send("98989898&&++&&1&&0&&"+transid+"&&1001");
         }    
-        });
+        });*/
+    res.send("98989898&&++&&0&&0&&0000&&1000");
  });
 app.listen(3000);
