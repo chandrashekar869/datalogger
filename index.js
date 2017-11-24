@@ -41,18 +41,18 @@ app.post("/",function(req,res){
     }); 
     req.on('end', function () {
           var post = qs.parse(body);
-        if(message.split("AA")[2]==0){
+        if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
-         res.end("98989898AAPPAA0AA0AA0000AA1000");
+         res.end("98989898&&++&&0&&0&&0000&&1000");
         }
-        if(message.split("AA")[2]==1){
+        if(message.split("&&")[2]==1){
             console.log("Periodic message");
-            var split=message.split("AA");
+            var split=message.split("&&");
             var transid=split[5];
             console.log("transid:"+transid);
             console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
-            res.end("98989898AAPPAA1AA0AA"+transid+"AA1001");
+            res.end("98989898&&++&&1&&0&&"+transid+"&&1001");
         }    
         });
  });
