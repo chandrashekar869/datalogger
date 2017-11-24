@@ -52,7 +52,7 @@ app.post("/",function(req,res){
             var transid=split[4];
             console.log("transid:"+transid);
             console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
-            res.send("98989898AAPPAA1AA0AA"+transid+"AA1001");
+            res.end("98989898AAPPAA1AA0AA"+transid+"AA1001");
         }    
         });
  });
