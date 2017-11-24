@@ -49,7 +49,7 @@ app.post("/",function(req,res){
         if(message.split("AA")[2]==1){
             console.log("Periodic message");
             var split=message.split("AA");
-            var transid=split[4];
+            var transid=split[5];
             console.log("transid:"+transid);
             console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
             res.end("98989898AAPPAA1AA0AA"+transid+"AA1001");
