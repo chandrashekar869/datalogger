@@ -130,7 +130,9 @@ app.post('/addUsers', function(req, res) {
   connection.connect(function(err){
     var user_id;
 connection.query("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')", function (err, result, fields) {
-console.log("results",result)
+console.log("results",result);
+	console.log("err",err);
+	console.log("fields",fields);
 });
 //	  console.log(user_id);
   data.assigned.map(function(temp_device_id){
