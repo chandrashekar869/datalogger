@@ -130,9 +130,9 @@ app.post('/addUsers', function(req, res) {
   connection.connect(function(err){
     var user_id;
 connection.query("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')", function (err, result, fields) {
-   user_id=result.insertId;
-  });
-	  console.log(user_id);
+console.log("results",result)
+});
+//	  console.log(user_id);
   data.assigned.map(function(temp_device_id){
    connection.query("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+user_id+"','"+temp_device_id+"')", function (err, result, fields) {});
   });
