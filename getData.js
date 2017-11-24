@@ -128,8 +128,11 @@ app.post('/addUsers', function(req, res) {
   console.log("data",data);
   //var user_id=Math.floor(Math.random()*89999+10000);
   connection.connect(function(err){
-  connection.query("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')", function (err, result, fields) {});
-  var user_id=result.insertId;
+    var user_id;
+connection.query("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')", function (err, result, fields) {
+   user_id=result.insertId;
+  });
+	  console.log(user_id);
   data.assigned.map(function(temp_device_id){
    connection.query("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+user_id+"','"+temp_device_id+"')", function (err, result, fields) {});
   });
