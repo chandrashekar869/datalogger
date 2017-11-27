@@ -89,7 +89,7 @@ var connection=mysql.createPool(
         user:"root",
         host:"localhost",
         password:"root",
-        database:"data_logger_db",
+        database:"data_logger",
         debug:false
     }
     );
@@ -124,7 +124,6 @@ function validateDevice(res){
         var device_id_query="Select * from devicelist where device_id='"+login_tokenised_message.devid+"' AND device_password='"+login_tokenised_message.pwd+"'";
         //console.log(device_id_query);
         connection_callback.query(device_id_query,function(err,result,fields){
-            console.log(device_id_query);
             console.log("validateDevice",result.length);
             var returnreq_id=Math.floor(Math.random()*8999+1000);
             if(result.length==0){   
