@@ -59,12 +59,12 @@ app.post('/userAdmin', function(req, res){
 app.post('/users/deviceList', function(req, res) {
   connection=createConnection();
   connection.connect(function(err){ 
-  var user_id = req.body.username;
-	var token = req.body.password;
+  var user_id = req.body.user_id;
+  //var token = req.body.password;
   //console.log(sqlFun(user_id,getJson));
-  connection.query("SELECT a.device_id ,b.gas_leak,b.low_gas,b.power_level,c.coordinates,log_time FROM user_device_list a,device_log_current b,devicelist c where  a.user_id='125423' and a.device_id = b.device_Id and a.device_id = c.device_id", function (err, result, fields) {
-    console.log("SELECT a.device_id ,alarm,beacon,coordinates,log_time FROM user_device_list a,data_log_current b where  a.user_id='1234' and a.device_id = b.device_Id");
-    if (err) throw err;
+ connection.query("SELECT a.device_id ,b.gas_leak,b.low_gas,b.power_level,c.coordinates,log_time FROM user_device_list a,device_log_current b,devicelist c where  a.user_id='"+user_id+"' and a.device_id = b.device_Id and a.device_id = c.device_id", function (err, result, fields) {
+ console.log("SELECT a.device_id ,b.gas_leak,b.low_gas,b.power_level,c.coordinates,log_time FROM user_device_list a,device_log_current b,devicelist c where  a.user_id='"+user_id+"' and a.device_id = b.device_Id and a.device_id = c.device_id");
+      if (err) throw err;
     res.send(result);
    }); 
 });
