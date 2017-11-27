@@ -104,7 +104,7 @@ function createConnection(){
             return month<10? "0"+month : ""+month;
         }();
         var server_datetime=server_date.getFullYear()+"-"+month+"-"+server_date.getDate()+" "+server_date.getHours()+":"+server_date.getMinutes()+":"+server_date.getSeconds();
-        console.log("Server_date"+server_datetime);
+       // console.log("Server_date"+server_datetime);
         return server_datetime;
     }
 
@@ -129,14 +129,14 @@ function validateDevice(res){
             var returnreq_id=Math.floor(Math.random()*8999+1000);
             if(result.length==0){   
                 res.send(login_tokenised_message.dummy_session_id+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+1+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);                    
-                console.log(login_tokenised_message.dummy_session_id+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+1+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
+                console.log("login response=",login_tokenised_message.dummy_session_id+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+1+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log("sessid=",login_tokenised_message.dummy_session_id);
             }
             else{
                 var sessid_new=Math.floor(Math.random()*89999999+10000000);
                 update_device_list(sessid_new,login_tokenised_message.devid);
                 res.send(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
-                console.log(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
+                console.log("login response=",sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log("sessid=",sessid_new);    
             }
         });
@@ -178,7 +178,7 @@ function get_state_updated(res,exec){
         device_id_query="Select device_state_updated,solenoid from control_data where device_id='"+temp_device_id+"'";
         connection.query(device_id_query,function(err,result,fields){
         // console.log(device_id_query);
-         console.log("result",result);   
+       //  console.log("result",result);   
          if(result.length==0)
                 {
                     console.log("NO control_data entry");
@@ -224,7 +224,7 @@ if(i===4 && flag!=false){
 }
 if(i<4){
 if(i===1){
- console.log("breakdown"+breakdown);
+// console.log("breakdown"+breakdown);
  tokenisedobj[params[i]]=parsedata(breakdown[i]);
 }
 else
@@ -235,13 +235,13 @@ tokenisedobj[params[i]]=breakdown[i];
 var periodic_response;
 if(flag==true){
     periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
-    console.log(periodic_response);
+    console.log("periodic response:",periodic_response);
 }
 //    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
 else if(flag==false){
     periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
 //    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+1+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
-console.log(periodic_response);}
+console.log("periodic response:",periodic_response);}
 return periodic_response;
 }
 
