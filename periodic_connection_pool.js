@@ -235,7 +235,7 @@ else
 tokenisedobj[params[i]]=breakdown[i];
 }
 }
-console.log(tokenisedobj);
+//console.log(tokenisedobj);
 var periodic_response;
 if(flag==true){
     periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
@@ -444,7 +444,7 @@ sql=sql.concat("'"+tokenisedobj.data.AD["channel 8"]+"',");
 sql=sql.concat("'00000001',");//temp value set
 var dtemp=tokenisedobj["time"].split(",");
 var datetime=dtemp[0].split("/").reverse().join("-")+" "+dtemp[1];
-console.log(datetime);
+//console.log(datetime);
 sql=sql.concat("'"+datetime+"',");
 sql=sql.concat("'01',");//state needs to be verified 
 sql=sql.concat("'"+tokenisedobj.data.TH["Gas Leak"]+"',");
@@ -493,7 +493,7 @@ function Update_data_log_current(customer_name,locationLL,coordinates){
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.DC["Gas Meter 4"]);
     var dtemp=tokenisedobj["time"].split(",");
     var datetime=dtemp[0].split("/").reverse().join("-")+" "+dtemp[1];
-    console.log(datetime);
+    //console.log(datetime);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+datetime);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.RS["full"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Battery Level"]);
@@ -548,7 +548,7 @@ function insertIntodevice_log_historical(customer_name,locationLL,coordinates){
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.DC["Gas Meter 4"]);
     var dtemp=tokenisedobj["time"].split(",");
     var datetime=dtemp[0].split("/").reverse().join("-")+" "+dtemp[1];
-    console.log(datetime);
+    //console.log(datetime);
     sql_device_log_historical=sql_device_log_historical.concat("','"+datetime);
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.RS["full"]);
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.AD["Battery Level"]);
