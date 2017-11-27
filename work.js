@@ -231,7 +231,7 @@ else
 tokenisedobj[params[i]]=breakdown[i];
 }
 }
-//console.log(tokenisedobj);
+console.log(tokenisedobj);
 var periodic_response;
 if(flag==true){
     periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
