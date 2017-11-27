@@ -123,7 +123,7 @@ function validateDevice(res){
         if(err) throw err;
         console.log("Connected");
         var device_id_query="Select * from devicelist where device_id='"+login_tokenised_message.devid+"' AND device_password='"+login_tokenised_message.pwd+"'";
-        console.log(device_id_query);
+        //console.log(device_id_query);
         connection.query(device_id_query,function(err,result,fields){
             console.log("validateDevice",result.length);
             var returnreq_id=Math.floor(Math.random()*8999+1000);
@@ -150,7 +150,7 @@ function update_device_list(sessid_new_recieve,dev_id_recieve){
        if(err) throw err;
        console.log("Connected");
        var sess_id_query="Update devicelist set session_id='"+sessid_new_recieve+"' where device_id='"+dev_id_recieve+"'";
-       console.log(sess_id_query);
+       //console.log(sess_id_query);
        connection.query(sess_id_query,function(err,result,fields){
           console.log("devicelist updated");
        });
@@ -165,7 +165,7 @@ function get_state_updated(res,exec){
        if(err) throw err;
        console.log("Connected");
        var device_id_query="Select device_id from devicelist where session_id='"+message.split(dlmPattern)[0]+"'";
-       console.log(device_id_query);
+      // console.log(device_id_query);
        connection.query(device_id_query,function(err,result,fields){
         if(result.length==0)
            {
@@ -177,7 +177,7 @@ function get_state_updated(res,exec){
         temp_device_id=result[0].device_id;
         device_id_query="Select device_state_updated,solenoid from control_data where device_id='"+temp_device_id+"'";
         connection.query(device_id_query,function(err,result,fields){
-         console.log(device_id_query);
+        // console.log(device_id_query);
          console.log("result",result);   
          if(result.length==0)
                 {
@@ -253,7 +253,7 @@ function getDeviceId(){
        if(err) throw err;
        console.log("Connected");
        var device_id_query="Select device_id,device_password,customer_name,address,config_password,coordinates from devicelist where session_id='"+tokenisedobj.sessid+"'";
-       console.log(device_id_query);
+      // console.log(device_id_query);
        connection.query(device_id_query,function(err,result,fields){
            if(result.length==0)
                return 1;
@@ -455,7 +455,7 @@ sql=sql.concat("'"+configuration_file_location+"',");//temp value set
 sql=sql.concat("'"+configuration_password+"',");//temp value set
 sql=sql.concat("'"+tokenisedobj["transid"]+"',");//temp value set
 sql=sql.concat("'"+tokenisedobj["sessid"]+"')");//temp value set
-console.log(sql);
+//console.log(sql);
 connection.connect(function(err){
     if(err) throw err;
     console.log("Connected");
@@ -510,7 +510,7 @@ function Update_data_log_current(customer_name,locationLL,coordinates){
     sql_device_log_current_update=sql_device_log_current_update.concat("',device_location='"+locationLL);
     sql_device_log_current_update=sql_device_log_current_update.concat("',gas_leak='"+tokenisedobj.data.TH["Gas Leak"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',low_gas='"+tokenisedobj.data.TH["Tank Level"]+"',coordinates='"+coordinates+"'");
-    console.log(sql_device_log_current_update);
+   // console.log(sql_device_log_current_update);
     connection.connect(function(err){
         if(err) throw err;
         console.log("Connected");
@@ -546,7 +546,7 @@ function insertIntodevice_log_historical(customer_name,locationLL,coordinates){
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.TH["Gas Leak"]);
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.TH["Tank Level"]);
     sql_device_log_historical=sql_device_log_historical.concat("','"+coordinates+"')");
-console.log(sql_device_log_historical);
+//console.log(sql_device_log_historical);
 connection.connect(function(err){
     if(err) throw err;
     console.log("Connected");
@@ -565,7 +565,7 @@ function insert_session_log(){
     var sql_session_log=sql_session_log.concat("'"+temp_device_id+"',");
     var sql_session_log=sql_session_log.concat("'"+getServerDate()+"',");
     var sql_session_log=sql_session_log.concat("'"+message+"')");
-    console.log(sql_session_log);
+    //console.log(sql_session_log);
     connection.connect(function(err){
         if(err){ throw err};
         console.log("Connected");
