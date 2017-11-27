@@ -231,7 +231,7 @@ else
 tokenisedobj[params[i]]=breakdown[i];
 }
 }
-console.log(tokenisedobj);
+//console.log(tokenisedobj);
 var periodic_response;
 if(flag==true){
     periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
@@ -516,7 +516,7 @@ function Update_data_log_current(customer_name,locationLL,coordinates){
         console.log("Connected");
         connection.query(sql_device_log_current_update,function(err,result,fields){
             if(err) throw err;
-            console.log(result);
+           // console.log(result);
          });
     });
 }
@@ -553,7 +553,7 @@ connection.connect(function(err){
     connection.query(sql_device_log_historical,function(err,result,fields){
         if(err) throw err;
         console.log("Error in Inserting data");
-        console.log(result);
+        //console.log(result);
      });
 });
 }
@@ -572,7 +572,7 @@ function insert_session_log(){
         connection.query(sql_session_log,function(err,result,fields){
             if(err) {throw err};
             console.log("Error in Inserting data");
-            console.log(result);
+           // console.log(result);
             return 0;
             
          });
