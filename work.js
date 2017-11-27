@@ -380,7 +380,7 @@ function parsedata(data){
             case 1:var tempchannel=individualdata.replace("AD:","").split("&");
             tempdataobj.AD["full"]=individualdata;
             var chCount=0;
-                    var analogParams=["channel 1","Gas Leak","Tank Pressure","Line Pressure","Tank Level","Battery Level","channel 7","channel 8"];
+                    var analogParams=["Gas Leak","channel2","Tank Pressure","Line Pressure","Tank Level","Battery Level","channel 7","channel 8"];
                     tempchannel.map(function(individualAnalogChannel){
                         tempdataobj.AD[analogParams[chCount]]=individualAnalogChannel;
                         chCount++;
@@ -426,8 +426,8 @@ var sql="INSERT INTO raw_table(device_id,device_user,pwd,analog_ch1,analog_ch2,a
 sql=sql.concat("'"+temp_device_id+"',");//temp value set
 sql=sql.concat("'"+device_user+"',");//temp value set
 sql=sql.concat("'"+pwd+"',");//temp value set
+sql=sql.concat("'"+tokenisedobj.data.AD["channel2"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.AD["Gas Leak"]+"',");
-sql=sql.concat("'"+tokenisedobj.data.AD["channel 2"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.AD["Tank Pressure"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.AD["Line Pressure"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.AD["Tank Level"]+"',");
@@ -477,7 +477,7 @@ function Update_data_log_current(customer_name,locationLL,coordinates){
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Tank Pressure"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Line Pressure"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Tank Level"]);
-    sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["Gas Leak"]);
+    sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.AD["channel2"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.DC["Gas Meter 1"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.DC["Gas Meter 2"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("','"+tokenisedobj.data.DC["Gas Meter 3"]);
@@ -498,7 +498,7 @@ function Update_data_log_current(customer_name,locationLL,coordinates){
     sql_device_log_current_update=sql_device_log_current_update.concat("',tank_pressure='"+tokenisedobj.data.AD["Tank Pressure"]);    
     sql_device_log_current_update=sql_device_log_current_update.concat("',line_pressure='"+tokenisedobj.data.AD["Line Pressure"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',gas_level='"+tokenisedobj.data.AD["Tank Level"]);
-    sql_device_log_current_update=sql_device_log_current_update.concat("',gas_detector='"+tokenisedobj.data.AD["Gas Leak"]);
+    sql_device_log_current_update=sql_device_log_current_update.concat("',gas_detector='"+tokenisedobj.data.AD["channel2"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',meter1='"+tokenisedobj.data.DC["Gas Meter 1"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',meter2='"+tokenisedobj.data.DC["Gas Meter 2"]);
     sql_device_log_current_update=sql_device_log_current_update.concat("',meter3='"+tokenisedobj.data.DC["Gas Meter 3"]);
@@ -530,7 +530,7 @@ function insertIntodevice_log_historical(customer_name,locationLL,coordinates){
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.AD["Tank Pressure"]);
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.AD["Line Pressure"]);
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.AD["Tank Level"]);
-    sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.AD["Gas Leak"]);
+    sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.AD["channel2"]);
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.DC["Gas Meter 1"]);
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.DC["Gas Meter 2"]);
     sql_device_log_historical=sql_device_log_historical.concat("','"+tokenisedobj.data.DC["Gas Meter 3"]);
