@@ -62,11 +62,17 @@ app.post("/medlynkdevicelistener",function(req,res){
     breakdown=message.split(dlmPattern);
       if(message.split("&&")[2]==0){
           //login message
-          validateDevice(res);
+         // validateDevice(res);
+         res.end("98989898&&++&&0&&0&&0000&&1000");
       }
       if(message.split("&&")[2]==1){
           console.log("Periodic message");
-          get_state_updated(res,periodic_message_variable);
+          var split=message.split("&&");
+          var transid=split[5];
+          console.log("transid:"+transid);
+          console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
+          res.end("98989898&&++&&1&&0&&"+transid+"&&1001");
+          //get_state_updated(res,periodic_message_variable);
       }    
       });
 });
@@ -122,11 +128,13 @@ function validateDevice(res){
             var returnreq_id=Math.floor(Math.random()*8999+1000);
             if(result.length==0){   
                 res.send(login_tokenised_message.dummy_session_id+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+1+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);                    
+                console.log(login_tokenised_message.dummy_session_id+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+1+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
             }
             else{
-                    var sessid_new=Math.floor(Math.random()*89999999+10000000);
-                    update_device_list(sessid_new,login_tokenised_message.devid);
-                    res.send(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
+                var sessid_new=Math.floor(Math.random()*89999999+10000000);
+                update_device_list(sessid_new,login_tokenised_message.devid);
+                res.send(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
+                console.log(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
             }
         });
     }); 
@@ -222,11 +230,15 @@ tokenisedobj[params[i]]=breakdown[i];
 }
 console.log(tokenisedobj);
 var periodic_response;
-if(flag==true)
-periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
-else if(flag==false)
-periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+1+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
-console.log(periodic_response);
+if(flag==true){
+    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
+    console.log(periodic_response);
+}
+//    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
+else if(flag==false){
+    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
+//    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+1+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
+console.log(periodic_response);}
 return periodic_response;
 }
 
