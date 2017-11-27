@@ -63,6 +63,7 @@ app.post("/medlynkdevicelistener",function(req,res){
       if(message.split("&&")[2]==0){
           //login message
          // validateDevice(res);
+          console.log("98989898&&++&&0&&0&&0000&&1000");
          res.end("98989898&&++&&0&&0&&0000&&1000");
       }
       if(message.split("&&")[2]==1){
