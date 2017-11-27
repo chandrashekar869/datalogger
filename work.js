@@ -552,7 +552,6 @@ connection.connect(function(err){
     console.log("Connected");
     connection.query(sql_device_log_historical,function(err,result,fields){
         if(err) throw err;
-        console.log("Error in Inserting data");
         //console.log(result);
      });
 });
