@@ -130,12 +130,14 @@ function validateDevice(res){
             if(result.length==0){   
                 res.send(login_tokenised_message.dummy_session_id+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+1+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);                    
                 console.log(login_tokenised_message.dummy_session_id+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+1+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
+                console.log("sessid=",login_tokenised_message.dummy_session_id);
             }
             else{
                 var sessid_new=Math.floor(Math.random()*89999999+10000000);
                 update_device_list(sessid_new,login_tokenised_message.devid);
                 res.send(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
+                console.log("sessid=",sessid_new);    
             }
         });
     }); 
