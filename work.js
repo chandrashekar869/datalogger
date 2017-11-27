@@ -380,7 +380,7 @@ function parsedata(data){
             case 1:var tempchannel=individualdata.replace("AD:","").split("&");
             tempdataobj.AD["full"]=individualdata;
             var chCount=0;
-                    var analogParams=["Gas Leak","channel 2","Tank Pressure","Line Pressure","Tank Level","Battery Level","channel 7","channel 8"];
+                    var analogParams=["channel 1","Gas Leak","Tank Pressure","Line Pressure","Tank Level","Battery Level","channel 7","channel 8"];
                     tempchannel.map(function(individualAnalogChannel){
                         tempdataobj.AD[analogParams[chCount]]=individualAnalogChannel;
                         chCount++;
