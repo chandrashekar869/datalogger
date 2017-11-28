@@ -45,22 +45,22 @@ app.post("/",function(req,res){
         if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
-            console.log("Login response=65656565&&++&&0&&0&&0000&&1000");
-         res.end("65656565&&++&&0&&0&&0000&&1000");
+            console.log("Login response=75757575&&++&&0&&0&&0000&&1000");
+         res.end("75757575&&++&&0&&0&&0000&&1000");
         }
         if(message.split("&&")[2]==1){
             console.log("Periodic message");
             var split=message.split("&&");
             var transid=split[5];
             console.log("transid:"+transid);
-            console.log("response=65656565&&++&&1&&0&&"+transid+"&&1001");
-            if(split[0]=="65656565"){
-            res.end("65656565&&++&&1&&0&&"+transid+"&&1001");
+            console.log("response=75757575&&++&&1&&0&&"+transid+"&&1001");
+            if(split[0]=="75757575"){
+            res.end("75757575&&++&&1&&0&&"+transid+"&&1001");
             console.log("response sent sessionid matched",split[0]);
             }
             else{
                 if(flag<=2){
-                res.end("65656565&&++&&1&&0&&"+transid+"&&1001");
+                res.end("75757575&&++&&1&&0&&"+transid+"&&1001");
                     console.log("device excused response sent");
                 flag++;
                 }
