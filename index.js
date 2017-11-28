@@ -44,16 +44,16 @@ app.post("/",function(req,res){
         if(message.split("&&")[2]==0){
             //login message
             console.log("Login message");
-            console.log("Login response=98989898&&++&&0&&0&&0000&&1000");
-         res.end("98989898&&++&&0&&0&&0000&&1000");
+            console.log("Login response=35353535&&++&&0&&0&&0000&&1000");
+         res.end("35353535&&++&&0&&0&&0000&&1000");
         }
         if(message.split("&&")[2]==1){
             console.log("Periodic message");
             var split=message.split("&&");
             var transid=split[5];
             console.log("transid:"+transid);
-            console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
-            res.end("98989898&&++&&1&&0&&"+transid+"&&1001");
+            console.log("response=35353535&&++&&1&&0&&"+transid+"&&1001");
+            res.end("35353535&&++&&1&&0&&"+transid+"&&1001");
         }    
         });
  });
