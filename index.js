@@ -36,7 +36,7 @@ app.post("/",function(req,res){
             
             if (body.length > 1e6)
                 req.connection.destroy();
-            console.log(body);
+           // console.log(body);
         message=body;    
     }); 
     req.on('end', function () {
