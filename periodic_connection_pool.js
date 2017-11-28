@@ -181,7 +181,7 @@ function get_state_updated(res,exec){
                 flag++;
                 }
                 else if(flag>2){
-            console.log("response not sent sessionid not matched",split[0]);
+            console.log("response not sent sessionid not matched");
                 flag=1;
                 }
            // res.send(resmessage);
