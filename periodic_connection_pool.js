@@ -17,6 +17,7 @@ var breakdown=message.split(dlmPattern);
 var tokenisedobj={};
 var params=["msgid","data","time","transid"];
 var params_bulk=["data","time"];
+var flag=1;
 i=0;
 
 
@@ -174,6 +175,15 @@ function get_state_updated(res,exec){
            {
                //if session id not found then sends a periodic response with status 1
             var resmessage=exec(false);
+               if(flag<=2){
+                res.end(resmessage);
+                    console.log("device excused response sent");
+                flag++;
+                }
+                else if(flag>2){
+            console.log("response not sent sessionid not matched",split[0]);
+                flag=1;
+                }
            // res.send(resmessage);
            } 
         else{    
