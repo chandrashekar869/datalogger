@@ -388,7 +388,7 @@ function parsedata(data){
             case 1:var tempchannel=individualdata.replace("AD:","").split("&");
             tempdataobj.AD["full"]=individualdata;
             var chCount=0;
-                    var analogParams=["Gas Leak","channel2","Tank Pressure","Line Pressure","Tank Level","Battery Level","channel 7","channel 8"];
+                    var analogParams=["Gas Leak","channel2","Tank Level","Tank Pressure","Line Pressure","Battery Level","channel 7","channel 8"];
                     tempchannel.map(function(individualAnalogChannel){
                         tempdataobj.AD[analogParams[chCount]]=individualAnalogChannel;
                         chCount++;
@@ -433,8 +433,8 @@ var sql="INSERT INTO raw_table(device_id,device_user,pwd,analog_ch1,analog_ch2,a
 sql=sql.concat("'"+temp_device_id+"',");//temp value set
 sql=sql.concat("'"+device_user+"',");//temp value set
 sql=sql.concat("'"+pwd+"',");//temp value set
-sql=sql.concat("'"+tokenisedobj.data.AD["channel2"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.AD["Gas Leak"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.AD["channel2"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.AD["Tank Pressure"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.AD["Line Pressure"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.AD["Tank Level"]+"',");
