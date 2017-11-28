@@ -25,6 +25,7 @@ var qs=require('querystring');
 /*app.use(body_parser.urlencoded({
     extended:true
 }));*/
+var flag=1;
 app.post("/",function(req,res){
     console.log("Started");
    var body='';
@@ -58,7 +59,15 @@ app.post("/",function(req,res){
             console.log("response sent sessionid matched",split[0]);
             }
             else{
+                if(flag<=2){
+                res.end("65656565&&++&&1&&0&&"+transid+"&&1001");
+                    console.log("device excused response sent");
+                flag++;
+                }
+                else if(flag>2){
             console.log("response not sent sessionid not matched",split[0]);
+                flag=1;
+                }
             }
         }    
         });
