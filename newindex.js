@@ -40,8 +40,8 @@ app.post("/",function(req,res){
             console.log("response sent sessionid matched",split[0]);
             }
             else{
-            console.log("response sent sessionid not matched device excused response=10101010&&0&&"+transid+"&&1001");
-                res.end("12121212&&0&&"+transid+"&&1001");
+            console.log("response sent sessionid not matched device excused response=12121212&&++&&1&&0&&"+transid+"&&1001");
+                res.end("12121212&&++&&1&&0&&"+transid+"&&1001");
             }
         }    
         });
