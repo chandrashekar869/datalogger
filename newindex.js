@@ -41,7 +41,7 @@ app.post("/",function(req,res){
             }
             else{
             console.log("response sent sessionid not matched device excused response=10101010&&0&&"+transid+"&&1001");
-                res.end("10101010&&0&&"+transid+"&&1001");
+                res.end("12121212&&0&&"+transid+"&&1001");
             }
         }    
         });
