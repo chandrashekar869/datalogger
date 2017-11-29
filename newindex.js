@@ -34,9 +34,9 @@ app.post("/",function(req,res){
             var split=message.split("&&");
             var transid=split[5];
             console.log("transid:"+transid);
-            console.log("response=85858585&&++&&1&&0&&"+transid+"&&1001");
             if(split[0]=="85858585"){
             res.end("85858585&&++&&1&&0&&"+transid+"&&1001");
+            console.log("response=85858585&&++&&1&&0&&"+transid+"&&1001");
             console.log("response sent sessionid matched",split[0]);
             }
             else{
