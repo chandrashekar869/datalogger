@@ -84,6 +84,7 @@ function getServerDate(){
 
 app.post('/deviceAdmin', function(req, res) {
   var data=req.body.data;
+	console.log(data);
 connection=createConnection();
     connection.connect(function(err){
       console.log("select distinct b.device_id,c.customer_name,c.address,c.coordinates,c.gsm_mobile_number from user_device_list b,devicelist c where b.user_id='"+data+"' and b.device_id=c.device_id");
