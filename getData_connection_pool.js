@@ -144,6 +144,7 @@ connection_callback.end();
 
 app.post('/addUsers', function(req, res) {
   var time=getServerDate();
+  connection=createConnection();
   var data=req.body.data;
   console.log("data",data);
   //var user_id=Math.floor(Math.random()*89999+10000);
@@ -151,8 +152,9 @@ app.post('/addUsers', function(req, res) {
     if(err){
         connection_callback.release();
     }
-        var user_id;
-connection_callback.query("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')", function (err, result, fields) {
+    var user_id;
+console.log("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')");
+ connection_callback.query("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')", function (err, result, fields) {
 console.log("result",result.insertId);
 	user_id=result.insertId;
   data.assigned.map(function(temp_device_id){
