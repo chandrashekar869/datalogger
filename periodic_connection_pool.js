@@ -174,7 +174,7 @@ function get_state_updated(res,exec){
         if(result.length==0)
            {
                //if session id not found then sends a periodic response with status 1
-           /* var resmessage=exec(false);
+            var resmessage=exec(false);
                if(flag<=2){
                 res.end(resmessage);
                     console.log("device excused response sent");
@@ -183,10 +183,10 @@ function get_state_updated(res,exec){
                 else if(flag>2){
             console.log("response not sent sessionid not matched");
                 flag=1;
-                }*/
+                }
            // res.send(resmessage);
-               var resmessage=exec(false);
-               res.send(resmessage);
+             //  var resmessage=exec(false);
+              // res.send(resmessage);
            } 
         else{    
         temp_device_id=result[0].device_id;
@@ -255,8 +255,8 @@ if(flag==true){
 }
 //    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
 else if(flag==false){
-       periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
-//    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
+//       periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
+    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+0+"&&"+tokenisedobj.transid+"&&1001";
 //    periodic_response=tokenisedobj.sessid+dlmPattern+tokenisedobj.sfd+dlmPattern+tokenisedobj.msgid+dlmPattern+1+"&&req_tid&&"+tokenisedobj.transid+"&&++&&ReqType&&RequestMessage&&ReqId&&++&&ReqType&&RequestMessage&&ReqId";
 console.log("periodic response:",periodic_response);}
 return periodic_response;
