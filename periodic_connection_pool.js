@@ -198,7 +198,7 @@ function get_state_updated(res,exec){
                 {
                     console.log("NO control_data entry");
                     var resmessage=exec(true);
-                    res.send(resmessage);
+                    res.end(resmessage);
                     
                 }
             else{    
@@ -208,14 +208,14 @@ function get_state_updated(res,exec){
                     console.log("control_data entry found value 1");
                     console.log(result.solenoid);
                     var rs_split_msg=message.split(dlmPattern);
-                    res.send(rs_split_msg[0]+dlmPattern+rs_split_msg[1]+dlmPattern+rs_split_msg[2]+"&&a1="+result.solenoid+"&&a2=999&&a3=100&&"+rs_split_msg.pop());
+                    res.end(rs_split_msg[0]+dlmPattern+rs_split_msg[1]+dlmPattern+rs_split_msg[2]+"&&a1="+result.solenoid+"&&a2=999&&a3=100&&"+rs_split_msg.pop());
                     //Changes the device_state-updated once a new periodic message comes up.
                     connection_callback.query("UPDATE control_data SET device_state_updated='0' WHERE device_id='"+temp_device_id+"'",function(err,result,fields){});
                 }
                 else{
                     console.log("control_data entry found value 0");
                     var resmessage=exec(true);
-                    res.send(resmessage);
+                    res.end(resmessage);
                 }
             }
        //Not required to handle table empty constraint as table is prepopulated 
