@@ -55,7 +55,7 @@ app.post("/",function(req,res){
              
              if (body.length > 1e6)
                  req.connection.destroy();
-             console.log(body);
+            // console.log(body);
          message=body;    
      }); 
      req.on('end', function () {
@@ -63,13 +63,15 @@ app.post("/",function(req,res){
     breakdown=message.split(dlmPattern);
       if(message.split("&&")[2]==0){
           //login message
+          console.log("login_message_recieved");
           validateDevice(res);
         //  console.log("98989898&&++&&0&&0&&0000&&1000");
          //res.end("98989898&&++&&0&&0&&0000&&1000");
       }
       if(message.split("&&")[2]==1){
-          console.log("Periodic message");
-         // var split=message.split("&&");
+          console.log("Periodic message recieved");
+            console.log(message);
+          // var split=message.split("&&");
           //var transid=split[5];
           //console.log("transid:"+transid);
           //console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
@@ -182,7 +184,7 @@ function get_state_updated(res,exec){
                 }
                 else if(flag>2){
             console.log("response not sent sessionid not matched");
-             //   flag=1;
+              flag=1;
                 }
            // res.send(resmessage);
              //  var resmessage=exec(false);
