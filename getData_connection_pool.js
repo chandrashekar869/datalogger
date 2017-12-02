@@ -144,7 +144,6 @@ connection_callback.end();
 
 app.post('/addUsers', function(req, res) {
   var time=getServerDate();
-  connection=createConnection();
   var data=req.body.data;
   console.log("data",data);
   //var user_id=Math.floor(Math.random()*89999+10000);
