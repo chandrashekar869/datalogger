@@ -178,7 +178,7 @@ function get_state_updated(res,exec){
            {
                //if session id not found then sends a periodic response with status 1
             var resmessage=exec(false);
-              res.send(resmessage);
+             // res.send(resmessage); //if mismatch in sessid no response should be provided
            } 
         else{    
         temp_device_id=result[0].device_id;
