@@ -252,11 +252,13 @@ app.post('/users/register', function(req, res){
         }
   var userNmae = req.body.name;
   //device_id = device_id.replace( /:/g, "" );
+  var date=getServerDate();	    
   var password = req.body.password;
   var email_id = req.body.email;
   var mobile_num = req.body.mobile;
-  connection_callback.query("Insert into user_details (user_name,email_id, contact_no,last_update_time,password)VALUES('"+userNmae+"','"+email_id+"','"+mobile_num+"','"+date+"','"+password+"')", function (err, result, fields){
-  console.log("Insert into user_details (user_name,email_id, contact_no,last_update_time,password)VALUES('"+userNmae+"','"+email_id+"','"+mobile_num+"','"+date+"','"+password+"'");
+  var address = req.body.address;
+  connection_callback.query("Insert into user_details (user_name,email_id, contact_no,address,last_update_time,password)VALUES('"+userNmae+"','"+email_id+"','"+mobile_num+"','"+address+"','"+date+"','"+password+"')", function (err, result, fields){
+  console.log("Insert into user_details (user_name,email_id, contact_no,address,last_update_time,password)VALUES('"+userNmae+"','"+email_id+"','"+mobile_num+"','"+address+"','"+date+"','"+password+"')", function (err, result, fields)");
   if (err){
 
     if(err.code == 'ER_DUP_ENTRY'){
