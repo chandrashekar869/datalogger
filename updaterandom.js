@@ -19,7 +19,7 @@ function createConnection(){
     var query="";
     connection.connect(function(err){
     for(var i=1;i<=91;i++){
-        query="update device_log_historical set gas_detector='"+getRandom()+"' where _id='"+i+"'";
+        query="update device_log_historical set gas_level='"+getRandom()+"' where _id='"+i+"'";
             if(err) throw err;
             connection.query(query, function (err, result, fields){
             }); 
