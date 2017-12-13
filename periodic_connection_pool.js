@@ -285,7 +285,7 @@ function getDeviceId(){
                device_id=temp_device_id;
                insertIntoraw_table(result.address,result.config_password,result.customer_name,result.device_password);
                Update_data_log_current(result.customer_name,result.address,result.coordinates);
-               //insertIntodevice_log_historical(result.customer_name,result.address,result.coordinates);
+               insertIntodevice_log_historical(result.customer_name,result.address,result.coordinates);
                insert_session_log()
            }
        });
