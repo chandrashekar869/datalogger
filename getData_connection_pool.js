@@ -29,12 +29,13 @@ app.post('/device/gaugesInfo', function(req, res){
         }
          var device_id = req.body.device_id;
   device_id = device_id.replace( /:/g, "" );
+	    var user_id = req.body.user_id;
   console.log(device_id);
-  connection_callback.query("select distinct b.device_password,b.gsm_mobile_number,a.device_Id,a.tank_pressure,a.line_pressure,a.gas_level,a.gas_detector,a.gas_leak,a.low_gas,a.power_level,a.log_time,a.meter1,a.meter2,a.meter3,a.meter4,a.customer_name,a.solenoid log_solenoid, control_data.solenoid control_solenoid ,control_data.device_state_updated from user_device_list c,   device_log_current a inner join devicelist b on a.device_Id=b.device_id  LEFT JOIN control_data ON a.device_Id = control_data.device_id where a.device_Id='"+device_id+"' and  c.device_id=a.device_Id", function (err, result, fields){
+  connection_callback.query("select b.device_password,b.gsm_mobile_number, a.device_Id,a.tank_pressure,a.line_pressure,a.gas_level,a.gas_detector,a.gas_leak,a.low_gas,a.power_level,a.log_time,a.meter1,a.meter2,a.meter3,a.meter4,b.customer_name,a.solenoid log_solenoid, control_data.solenoid control_solenoid ,control_data.device_state_updated from user_device_list c,   device_log_current a inner join devicelist b on a.device_Id=b.device_id  LEFT JOIN control_data ON a.device_Id = control_data.device_id where a.device_Id='"+device_id+"' and c.user_id='"+user_id+"' and  c.device_id=a.device_Id", function (err, result, fields){
     if (err) throw err;
     res.send(result);
    }); 
-  console.log("select b.device_password,b.gsm_mobile_number,a.device_Id,a.tank_pressure,a.line_pressure,a.gas_level,a.gas_detector,a.gas_leak,a.low_gas,a.power_level,a.log_time,a.meter1,a.meter2,a.meter3,a.meter4,a.customer_name,a.solenoid log_solenoid, control_data.solenoid control_solenoid ,control_data.device_state_updated from  device_log_current a inner join user_device_list b on a.device_Id=b.device_id  LEFT JOIN control_data ON a.device_Id = control_data.device_id where a.device_Id='"+device_id+"' and b.user_id='1234'");
+  console.log("select b.device_password,b.gsm_mobile_number, a.device_Id,a.tank_pressure,a.line_pressure,a.gas_level,a.gas_detector,a.gas_leak,a.low_gas,a.power_level,a.log_time,a.meter1,a.meter2,a.meter3,a.meter4,b.customer_name,a.solenoid log_solenoid, control_data.solenoid control_solenoid ,control_data.device_state_updated from user_device_list c,   device_log_current a inner join devicelist b on a.device_Id=b.device_id  LEFT JOIN control_data ON a.device_Id = control_data.device_id where a.device_Id='"+device_id+"' and c.user_id='"+user_id+"' and  c.device_id=a.device_Id");
 connection_callback.end();
 });
 });
@@ -258,7 +259,7 @@ app.post('/users/register', function(req, res){
   var mobile_num = req.body.mobile;
   var address = req.body.address;
   connection_callback.query("Insert into user_details (user_name,email_id, contact_no,address,last_update_time,password)VALUES('"+userNmae+"','"+email_id+"','"+mobile_num+"','"+address+"','"+date+"','"+password+"')", function (err, result, fields){
-  console.log("Insert into user_details (user_name,email_id, contact_no,address,last_update_time,password)VALUES('"+userNmae+"','"+email_id+"','"+mobile_num+"','"+address+"','"+date+"','"+password+"')", function (err, result, fields)");
+  console.log("Insert into user_details (user_name,email_id, contact_no,address,last_update_time,password)VALUES('"+userNmae+"','"+email_id+"','"+mobile_num+"','"+address+"','"+date+"','"+password+"')");
   if (err){
 
     if(err.code == 'ER_DUP_ENTRY'){
