@@ -294,6 +294,30 @@ connection_callback.end();
 });
 });
 
+app.post('/reporting', function(req, res){
+    var queryid=req.body.param;
+    var deviceId=req.body.deviceId;
+    console.log(queryid);
+    var query="";
+    if(queryid=="true")
+        query="SELECT log_time,gas_level FROM device_log_historical where device_id='"+deviceId+"' order by log_time";
+    if(queryid=="false")
+        query="SELECT log_time,gas_detector FROM device_log_historical where device_id='"+deviceId+"' order by log_time";
+    connection.getConnection(function(err,connection_callback){
+        if(err){
+            connection_callback.release();
+        }
+                connection_callback.query(query, function (err, result, fields){
+                if (err){throw err;}
+                if(result.length>0){
+                    res.send(result);
+                 } 
+                 else{res.send("0");}
+                });
+      connection_callback.end();
+            });
+  });
+
 app.listen(3200);
 
 var connection=mysql.createPool(
