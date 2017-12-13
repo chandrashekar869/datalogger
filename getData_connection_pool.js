@@ -10,7 +10,7 @@ app.use(body_parser.urlencoded({
 
 app.use(function (req, res, next){
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://40.71.199.63:8080');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Request headers you wish to allow
@@ -20,6 +20,32 @@ app.use(function (req, res, next){
     res.setHeader('Access-Control-Allow-Credentials', true);
     // Pass to next layer of middleware
     next();
+});
+app.post('/users/changePassword', function(req, res){
+    var user_id = req.body.user_id;
+    var oldpassword = req.body.oldPassword;
+    var password = req.body.newPassword;
+    connection.getConnection(function(err,connection_callback){
+        if(err){
+            connection_callback.release();
+        }
+    //console.log("device_id :"+userNmae+"solenoid : "+password);
+    connection_callback.query("UPDATE user_details SET password='"+password+"' WHERE user_id='"+user_id+"' and password='"+oldpassword+"'", function (err, result, fields){
+    console.log("UPDATE user_details SET password='"+password+"' WHERE user_id='"+user_id+"' and password='"+oldpassword+"'");
+    console.log("result:"+result.affectedRows);
+    
+    if(result.affectedRows>0)
+    {
+      res.send("0");
+    }
+    else
+      res.send("2");
+  
+    if (err){ throw err;
+      res.send("1");}
+     });
+     connection_callback.end();     
+    });
 });
 
 app.post('/device/gaugesInfo', function(req, res){
@@ -326,7 +352,7 @@ var connection=mysql.createPool(
         user:"root",
         host:"localhost",
         password:"root",
-        database:"data_logger",
+        database:"data_logger_db",
         debug:false
     }
     );
