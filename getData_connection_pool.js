@@ -144,10 +144,12 @@ app.post('/addDevice', function(req, res) {
          var query="Insert into devicelist(device_id,device_password,session_id,customer_name,coordinates,address,config_password,gsm_mobile_number) VALUES ('"+data.device_id+"','"+data.loginpassword+"','00000000','"+data.username+"','"+data.coordinates+"','"+data.address+"','"+data.configpassword+"','"+data.gsmmobilenumber+"') ON DUPLICATE KEY UPDATE device_id='"+data.device_id+"',device_password='"+data.loginpassword+"',customer_name='"+data.username+"',address='"+data.address+"',coordinates='"+data.coordinates+"',session_id='00000000',config_password='"+data.configpassword+"',gsm_mobile_number='"+data.gsmmobilenumber+"'";
         console.log(query);
         connection_callback.query(query, function (err, result, fields) {
-      });
+            res.send("DONE");
+        });
       if(data.editDevice==false){
       query="Insert into user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+data.device_id+"')"
       connection_callback.query(query, function (err, result, fields) {
+          res.send("DONE");
       });
     }
 connection_callback.end();    
@@ -181,11 +183,22 @@ app.post('/addUsers', function(req, res) {
     var user_id;
 console.log("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')");
  connection_callback.query("INSERT into user_details(password,user_name,email_id,role,contact_no,address,last_update_time,approved) VALUES ('"+data.password+"','"+data.username+"','"+data.email+"','"+data.role+"','"+data.phone+"','"+data.address+"','"+time+"','0')", function (err, result, fields) {
-
+    if(err) {
+        console.log("err-code",err.code);
+          if(err.code=='ER_DUP_ENTRY'){
+              res.send("DUP_KEY");
+          }
+          else{
+              res.send("I_ERR");
+          }
+      }
+      else{
+        res.send("DONE");
 	user_id=result.insertId;
   data.assigned.map(function(temp_device_id){
    connection_callback.query("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+user_id+"','"+temp_device_id+"')", function (err, result, fields) {});
   });
+}
 });
 connection_callback.end();
   });
@@ -199,14 +212,36 @@ connection.getConnection(function(err,connection_callback){
         connection_callback.release();
     }
   console.log("Update user_details set user_name='"+data.username+"',password='"+data.password+"',email_id='"+data.email+"',role='"+data.role+"',contact_no='"+data.phone+"',address='"+data.address+"',last_update_time='"+time+"' where user_id='"+data.user_id+"'");
-  connection_callback.query("Update user_details set user_name='"+data.username+"',password='"+data.password+"',email_id='"+data.email+"',role='"+data.role+"',contact_no='"+data.phone+"',address='"+data.address+"',last_update_time='"+time+"',approved='0' where user_id='"+data.user_id+"'", function (err, result, fields) {});
-  if(err) throw err;
+  connection_callback.query("Update user_details set user_name='"+data.username+"',password='"+data.password+"',email_id='"+data.email+"',role='"+data.role+"',contact_no='"+data.phone+"',address='"+data.address+"',last_update_time='"+time+"',approved='0' where user_id='"+data.user_id+"'", function (err, result, fields) {
+    if(err) {
+        console.log("err-code",err.code);
+          if(err.code=='ER_DUP_ENTRY'){
+              res.send("DUP_KEY");
+          }
+          else{
+              res.send("I_ERR");
+          }
+      }
+  
+ 
   console.log("delete from user_device_list where user_id IN (select distinct user_id from user_details where user_name='"+data.username+"' and password='"+data.password+"' and emai_id='"+data.email+"' and role='"+data.role+"' and contact_no='"+data.phone+"' and address='"+data.address+"')");
-  connection_callback.query("delete from user_device_list where user_id='"+data.user_id+"'", function (err, result, fields) {}); 
+  connection_callback.query("delete from user_device_list where user_id='"+data.user_id+"'", function (err, result, fields) { 
+      if(err){
+        res.send("I_ERR");
+      }
+  }); 
   data.assigned.map(function(temp_device_id){
   console.log("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')");
-    connection_callback.query("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')", function (err, result, fields) {});
+    connection_callback.query("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')", function (err, result, fields) {
+        if(err){
+            res.send("I_ERR");
+        }
+        else{
+            res.send("DONE");
+        }
+    });
   });
+});
 connection_callback.end();
 });
   console.log(data);
@@ -263,6 +298,7 @@ app.post('/device/updateSolenoid', function(req, res){
   var device_id = req.body.device_id;
   device_id = device_id.replace( /:/g, "" );
   var solenoid = req.body.solenoid;
+  var date=getServerDate();
   console.log("device_id :"+device_id+"solenoid : "+solenoid);
   connection_callback.query("INSERT INTO control_data (device_id, solenoid, last_updated, device_state_updated) VALUES('"+device_id+"','"+solenoid+"','"+date+"','1') ON DUPLICATE KEY UPDATE solenoid = '"+solenoid+"', last_updated='"+date+"',device_state_updated='1'", function (err, result, fields){
   if (err) throw err;
