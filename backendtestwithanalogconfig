@@ -65,6 +65,7 @@ app.post("/",function(req,res){
       if(message.split("&&")[2]==0){
           //login message
           console.log("login_message_recieved");
+          console.log(message);
           validateDevice(res);
         //  console.log("98989898&&++&&0&&0&&0000&&1000");
          //res.end("98989898&&++&&0&&0&&0000&&1000");
