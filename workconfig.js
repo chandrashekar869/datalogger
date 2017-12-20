@@ -26,7 +26,7 @@ var connection=mysql.createPool(
         user:"root",
         host:"localhost",
         password:"root",
-        database:"data_logger_db",
+        database:"data_logger",
         debug:false
     }
     );
@@ -60,13 +60,13 @@ jsonToXml=function (res,device_id,exec){
                 connection_callback.query("Select config_changes from config_change where device_id='"+device_id+"'",function(err,result,fields){
                     if(result.length==0){
                         console.log("check3");
-                        connection_callback.query("INSERT INTO data_logger_db.config_change(device_id,analog,date_time_config,digital_count_config,home_config,network_config,serial_config,server_config,slave_config,ssl_config,config_changes)VALUES('"+device_id+"','0','0','0','0','0','0','0','0','0','0') ON DUPLICATE KEY UPDATE analog='0',date_time_config='0',digital_count_config='0',home_config='0',network_config='0',serial_config='0',server_config='0',slave_config='0',ssl_config='0',config_changes='0'",function(err,result,fields){
+                        connection_callback.query("INSERT INTO data_logger.config_change(device_id,analog,date_time_config,digital_count_config,home_config,network_config,serial_config,server_config,slave_config,ssl_config,config_changes)VALUES('"+device_id+"','0','0','0','0','0','0','0','0','0','0') ON DUPLICATE KEY UPDATE analog='0',date_time_config='0',digital_count_config='0',home_config='0',network_config='0',serial_config='0',server_config='0',slave_config='0',ssl_config='0',config_changes='0'",function(err,result,fields){
                             exec("&&"+xml+"&&0",res);                        
                         });
                     }
                     else{
                         console.log("check4",xml);
-                    connection_callback.query("INSERT INTO data_logger_db.config_change(device_id,analog,date_time_config,digital_count_config,home_config,network_config,serial_config,server_config,slave_config,ssl_config,config_changes)VALUES('"+device_id+"','0','0','0','0','0','0','0','0','0','"+result[0].config_changes+"') ON DUPLICATE KEY UPDATE analog='0',date_time_config='0',digital_count_config='0',home_config='0',network_config='0',serial_config='0',server_config='0',slave_config='0',ssl_config='0',config_changes='"+result[0].config_changes+"'",function(err,result1,fields){
+                    connection_callback.query("INSERT INTO data_logger.config_change(device_id,analog,date_time_config,digital_count_config,home_config,network_config,serial_config,server_config,slave_config,ssl_config,config_changes)VALUES('"+device_id+"','0','0','0','0','0','0','0','0','0','"+result[0].config_changes+"') ON DUPLICATE KEY UPDATE analog='0',date_time_config='0',digital_count_config='0',home_config='0',network_config='0',serial_config='0',server_config='0',slave_config='0',ssl_config='0',config_changes='"+result[0].config_changes+"'",function(err,result1,fields){
                         var appenddata="&&"+xml+"&&"+result[0].config_changes;
                         exec(appenddata,res);
                     });    
@@ -85,10 +85,10 @@ jsonToXml=function (res,device_id,exec){
             exec("",res);
             connection_callback.query("Select config_changes from config_change where device_id='"+device_id+"'",function(err,result,fields){
                 if(result.length==0){
-                    connection_callback.query("INSERT INTO data_logger_db.config_change(device_id,analog,date_time_config,digital_count_config,home_config,network_config,serial_config,server_config,slave_config,ssl_config,config_changes)VALUES('"+device_id+"','0','0','0','0','0','0','0','0','0','0') ON DUPLICATE KEY UPDATE analog='0',date_time_config='0',digital_count_config='0',home_config='0',network_config='0',serial_config='0',server_config='0',slave_config='0',ssl_config='0',config_changes='0'",function(err,result,fields){});
+                    connection_callback.query("INSERT INTO data_logger.config_change(device_id,analog,date_time_config,digital_count_config,home_config,network_config,serial_config,server_config,slave_config,ssl_config,config_changes)VALUES('"+device_id+"','0','0','0','0','0','0','0','0','0','0') ON DUPLICATE KEY UPDATE analog='0',date_time_config='0',digital_count_config='0',home_config='0',network_config='0',serial_config='0',server_config='0',slave_config='0',ssl_config='0',config_changes='0'",function(err,result,fields){});
                 }
                 else
-                connection_callback.query("INSERT INTO data_logger_db.config_change(device_id,analog,date_time_config,digital_count_config,home_config,network_config,serial_config,server_config,slave_config,ssl_config,config_changes)VALUES('"+device_id+"','0','0','0','0','0','0','0','0','0','"+result[0].config_changes+"') ON DUPLICATE KEY UPDATE analog='0',date_time_config='0',digital_count_config='0',home_config='0',network_config='0',serial_config='0',server_config='0',slave_config='0',ssl_config='0',config_changes='"+result[0].config_changes+"'",function(err,result,fields){});
+                connection_callback.query("INSERT INTO data_logger.config_change(device_id,analog,date_time_config,digital_count_config,home_config,network_config,serial_config,server_config,slave_config,ssl_config,config_changes)VALUES('"+device_id+"','0','0','0','0','0','0','0','0','0','"+result[0].config_changes+"') ON DUPLICATE KEY UPDATE analog='0',date_time_config='0',digital_count_config='0',home_config='0',network_config='0',serial_config='0',server_config='0',slave_config='0',ssl_config='0',config_changes='"+result[0].config_changes+"'",function(err,result,fields){});
             });
         }
         });
