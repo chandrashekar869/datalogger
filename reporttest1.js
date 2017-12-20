@@ -129,7 +129,8 @@ app.post('/deviceAdmin', function(req, res) {
     }
       console.log("select distinct b.device_id,c.customer_name,c.address,c.coordinates,c.gsm_mobile_number from user_device_list b,devicelist c where b.user_id='"+data+"' and b.device_id=c.device_id");
       connection_callback.query("select a.device_id,b.device_id,b.customer_name,b.address,b.coordinates,b.gsm_mobile_number,b.key_location,b.config_password,c.power_level,c.gas_leak,c.low_gas,c.log_time from user_device_list a inner join devicelist b ON a.device_id=b.device_id left join device_log_current c on a.device_id=c.device_id where a.user_id='"+data+"'", function (err, result, fields) {
-      res.send(result);
+      if(err)throw err;
+	      res.send(result);
     });
 connection_callback.end();  
 });    
