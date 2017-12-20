@@ -140,7 +140,7 @@ function validateDevice(res){
                 var sessid_new=Math.floor(Math.random()*89999999+10000000);
                 sessid_rem=sessid_new;
                 update_device_list(sessid_new,login_tokenised_message.devid);
-                insertconfigdata(login_tokenised_message.devid);
+                //insertconfigdata(login_tokenised_message.devid);
                 res.end(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log("login response=",sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log("sessid=",sessid_new);    
