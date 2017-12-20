@@ -721,7 +721,7 @@ var connection=mysql.createPool(
         user:"root",
         host:"localhost",
         password:"root",
-        database:"data_logger_db",
+        database:"data_logger",
         debug:false
     }
     );
