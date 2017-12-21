@@ -463,7 +463,7 @@ return tempdataobj;
 
 //Inserts into raw_table
 function insertIntoraw_table(locationLL,configuration_password,device_user,pwd){
-var sql="INSERT INTO raw_table(device_id,device_user,pwd,analog_ch1,analog_ch2,analog_ch3,analog_ch4,analog_ch5,analog_ch6,analog_ch7,analog_ch8,digital,capture_time,state,alarm,threshold,gas_level,Relay,DC_CH1,DC_CH2,DC_CH3,DC_CH4,address,locationLL,ip_address,configuration_file_location,configuration_password,device_transaction_id,server_transaction_id) VALUES(";
+var sql="INSERT INTO raw_table(device_id,device_user,pwd,analog_ch1,analog_ch2,analog_ch3,analog_ch4,analog_ch5,analog_ch6,analog_ch7,analog_ch8,digital,capture_time,state,alarm,threshold,gas_level,Relay,DC_OCH1,DC_OCH2,DC_OCH3,DC_OCH4,DC_CH1,DC_CH2,DC_CH3,DC_CH4,DC_OCH9,DC_OCH10,DC_OCH11,DC_OCH12,address,locationLL,ip_address,configuration_file_location,configuration_password,device_transaction_id,server_transaction_id) VALUES(";
 sql=sql.concat("'"+temp_device_id+"',");//temp value set
 sql=sql.concat("'"+device_user+"',");//temp value set
 sql=sql.concat("'"+pwd+"',");//temp value set
@@ -485,10 +485,18 @@ sql=sql.concat("'"+tokenisedobj.data.TH["Gas Leak"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.TH["full"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.TH["Tank Level"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.RS["full"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.DC["Ignore 1"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.DC["Ignore 2"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.DC["Ignore 3"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.DC["Ignore 4"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.DC["Gas Meter 1"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.DC["Gas Meter 2"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.DC["Gas Meter 3"]+"',");
 sql=sql.concat("'"+tokenisedobj.data.DC["Gas Meter 4"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.DC["Ignore 9"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.DC["Ignore 10"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.DC["Ignore 11"]+"',");
+sql=sql.concat("'"+tokenisedobj.data.DC["Ignore 12"]+"',");
 sql=sql.concat("'"+address+"',");//temp value set
 sql=sql.concat("'"+locationLL+"',");//temp value set
 sql=sql.concat("'"+ip_address+"',");//temp value set
