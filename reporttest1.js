@@ -555,7 +555,7 @@ app.post('/reporting', function(req, res){
       query=query.concat("'"+data["time_stamp"]+"',");      
       query=query.concat("'"+data["server_connectivity_timeout"]+"',");
       query=query.concat("'"+data["server_connectivity_timeout_related_relay"]+"',");
-      query=query.concat("'"+data["relay_initial_state"]+"OFF"+"',");
+      query=query.concat("'OFF',");
       query=query.concat("'"+data["relay_next_state_duration"]+"',");
       query=query.concat("'"+data["login_user_id"]+"',");
       query=query.concat("'"+data["login_password"]+"',");
