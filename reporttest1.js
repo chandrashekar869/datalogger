@@ -223,30 +223,34 @@ connection.getConnection(function(err,connection_callback){
     if(err) {
         console.log("err-code",err.code);
           if(err.code=='ER_DUP_ENTRY'){
-              res.send("DUP_KEY");
+             console.log("check1");
+		  res.send("DUP_KEY");
           }
           else{
-              res.send("I_ERR");
+             console.log("check2");
+		  res.send("I_ERR");
           }
       }
   console.log("delete from user_device_list where user_id IN (select distinct user_id from user_details where user_name='"+data.username+"' and password='"+data.password+"' and emai_id='"+data.email+"' and role='"+data.role+"' and contact_no='"+data.phone+"' and address='"+data.address+"')");
   connection_callback.query("delete from user_device_list where user_id='"+data.user_id+"'", function (err, result, fields) { 
       if(err){
+	                   console.log("check3");
 	      	 res.send("I_ERR");
       }
-  data.assigned.map(function(temp_device_id){
+  }); 
+   data.assigned.map(function(temp_device_id){
   console.log("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')");
     connection_callback.query("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')", function (err, result, fields) {
         if(err){
+		             console.log("check4");
             res.send("I_ERR");
         }
         else{
-            res.send("DONE");
+             console.log("check5");
+		res.send("DONE");
         }
     });
   });
-  }); 
-  
 });
 connection_callback.end();
 });
