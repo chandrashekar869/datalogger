@@ -221,6 +221,7 @@ connection.getConnection(function(err,connection_callback){
   console.log("Update user_details set user_name='"+data.username+"',password='"+data.password+"',email_id='"+data.email+"',role='"+data.role+"',contact_no='"+data.phone+"',address='"+data.address+"',last_update_time='"+time+"' where user_id='"+data.user_id+"'");
   connection_callback.query("Update user_details set user_name='"+data.username+"',password='"+data.password+"',email_id='"+data.email+"',role='"+data.role+"',contact_no='"+data.phone+"',address='"+data.address+"',last_update_time='"+time+"',approved='0' where user_id='"+data.user_id+"'", function (err, result, fields) {
     if(err) {
+	    throw err;
         console.log("err-code",err.code);
           if(err.code=='ER_DUP_ENTRY'){
               res.send("DUP_KEY");
@@ -229,11 +230,10 @@ connection.getConnection(function(err,connection_callback){
               res.send("I_ERR");
           }
       }
-  
- 
   console.log("delete from user_device_list where user_id IN (select distinct user_id from user_details where user_name='"+data.username+"' and password='"+data.password+"' and emai_id='"+data.email+"' and role='"+data.role+"' and contact_no='"+data.phone+"' and address='"+data.address+"')");
   connection_callback.query("delete from user_device_list where user_id='"+data.user_id+"'", function (err, result, fields) { 
       if(err){
+	      	    throw err;
         res.send("I_ERR");
       }
   }); 
@@ -241,6 +241,7 @@ connection.getConnection(function(err,connection_callback){
   console.log("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')");
     connection_callback.query("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')", function (err, result, fields) {
         if(err){
+			    throw err;
             res.send("I_ERR");
         }
         else{
