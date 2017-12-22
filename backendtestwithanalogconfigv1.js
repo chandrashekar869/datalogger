@@ -218,7 +218,7 @@ function get_state_updated(res,exec){
                     var rs_split_msg=message.split(dlmPattern);
 //                    res.end(rs_split_msg[0]+dlmPattern+rs_split_msg[1]+dlmPattern+rs_split_msg[2]+"&&0&&"+rs_split_msg.pop()+"&&1001&&RS:"+result.solenoid+"&&1000");
                     new configparser(res,temp_device_id,function(configdata,res){
-                        var finalres=rs_split_msg[0]+dlmPattern+rs_split_msg[1]+dlmPattern+rs_split_msg[2]+"&&0&&"+rs_split_msg.pop()+"&&1001&&RS:"+result.solenoid+"&&1000"+configdata;
+                        var finalres=rs_split_msg[0]+dlmPattern+rs_split_msg[1]+dlmPattern+rs_split_msg[2]+"&&0&&"+message.split("&&").pop()+"&&1001&&RS:"+result.solenoid+"&&1000"+configdata;
                         res.end(finalres);
                         console.log(finalres);
                     });
