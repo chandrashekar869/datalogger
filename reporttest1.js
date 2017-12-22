@@ -235,6 +235,7 @@ connection.getConnection(function(err,connection_callback){
 	      	 res.send("I_ERR");
       }
   }); 
+	  var count=0;
    data.assigned.map(function(temp_device_id,i){
   console.log("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')");
     connection_callback.query("INSERT INTO user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+temp_device_id+"')", function (err, result, fields) {
