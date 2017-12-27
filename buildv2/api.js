@@ -128,7 +128,7 @@ app.post('/deviceAdmin', function(req, res) {
         connection_callback.release();
     }
       console.log("select distinct b.device_id,c.customer_name,c.address,c.coordinates,c.gsm_mobile_number from user_device_list b,devicelist c where b.user_id='"+data+"' and b.device_id=c.device_id");
-      connection_callback.query("select a.device_id,b.device_id,b.customer_name,b.address,b.coordinates,b.gsm_mobile_number,b.key_location,b.device_password,b.config_password,c.power_level,c.gas_leak,c.low_gas,c.log_time,d.ang2_threshold,d.ang2_lower_limit,d.ang3_threshold,d.ang3_lower_limit,e.http_post_interval from user_device_list a inner join devicelist b ON a.device_id=b.device_id left join device_log_current c on a.device_id=c.device_id left join analog d on a.device_id=d.device_id left join slave_config e on a.device_id=e.device_id where a.user_id='"+data+"'", function (err, result, fields) {
+      connection_callback.query("select a.device_id,b.device_id,b.customer_name,b.address,b.coordinates,b.gsm_mobile_number,b.key_location,b.device_password,b.config_password,c.gas_level,c.gas_detector,c.power_level,c.gas_leak,c.low_gas,c.log_time,d.ang2_threshold,d.ang2_lower_limit,d.ang3_threshold,d.ang3_lower_limit,e.http_post_interval from user_device_list a inner join devicelist b ON a.device_id=b.device_id left join device_log_current c on a.device_id=c.device_id left join analog d on a.device_id=d.device_id left join slave_config e on a.device_id=e.device_id where a.user_id='"+data+"'", function (err, result, fields) {
       res.send(result);
     });
 connection_callback.end();  
