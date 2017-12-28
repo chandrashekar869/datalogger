@@ -60,6 +60,8 @@ app.post("/",function(req,res){
          message=body;    
      }); 
      req.on('end', function () {
+         try
+         {   
         var post = qs.parse(body);
     breakdown=message.split(dlmPattern);
       if(message.split("&&")[2]==0){
@@ -78,7 +80,13 @@ app.post("/",function(req,res){
           //console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
           //res.end("98989898&&++&&1&&0&&"+transid+"&&1001");
           get_state_updated(res,periodic_message_variable);
-      }    
+      }
+     }
+         catch(e){
+             console.log("Error", e.stack);
+    console.log("Error", e.name);
+    console.log("Error", e.message);
+         }
       });
 });
 
