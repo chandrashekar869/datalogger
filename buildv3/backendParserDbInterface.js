@@ -60,8 +60,6 @@ app.post("/",function(req,res){
          message=body;    
      }); 
      req.on('end', function () {
-         try
-         {   
         var post = qs.parse(body);
     breakdown=message.split(dlmPattern);
       if(message.split("&&")[2]==0){
@@ -80,13 +78,7 @@ app.post("/",function(req,res){
           //console.log("response=98989898&&++&&1&&0&&"+transid+"&&1001");
           //res.end("98989898&&++&&1&&0&&"+transid+"&&1001");
           get_state_updated(res,periodic_message_variable);
-      }
-     }
-         catch(e){
-             console.log("Error", e.stack);
-    console.log("Error", e.name);
-    console.log("Error", e.message);
-         }
+      }    
       });
 });
 
@@ -148,14 +140,7 @@ function validateDevice(res){
                 sessid_rem=sessid_new;
                 update_device_list(sessid_new,login_tokenised_message.devid);
                 insertconfigchange(login_tokenised_message.devid);
-                try{
                 insertconfigdata(login_tokenised_message.devid);
-                }
-                catch(e){
-                console.log("Error", e.stack);
-    console.log("Error", e.name);
-    console.log("Error", e.message);
-                }
                 res.end(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log("login response=",sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log("sessid=",sessid_new);    
@@ -533,7 +518,7 @@ connection.getConnection(function(err,connection_callback){
     }
     console.log("Connected");
     connection_callback.query(sql,function(err,result,fields){
-       // if(err) throw err;
+        if(err) throw err;
         if(result[0]==null){
             console.log("empty result");
         }
@@ -590,7 +575,7 @@ function Update_data_log_current(customer_name,locationLL,coordinates){
         }
         console.log("Connected");
         connection_callback.query(sql_device_log_current_update,function(err,result,fields){
-       //     if(err) throw err;
+            if(err) throw err;
       //     console.log(result);
          });
          connection_callback.end();
@@ -628,7 +613,7 @@ connection.getConnection(function(err,connection_callback){
     }
     console.log("Connected");
     connection_callback.query(sql_device_log_historical,function(err,result,fields){
-       // if(err) throw err;
+        if(err) throw err;
         //console.log(result);
      });
      connection_callback.end();
@@ -648,7 +633,7 @@ function insert_session_log(){
         }
         console.log("Connected");
         connection_callback.query(sql_session_log,function(err,result,fields){
-       //     if(err) {throw err};
+            if(err) {throw err};
             console.log("Error in Inserting data");
            // console.log(result);
             return 0;
