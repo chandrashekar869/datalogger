@@ -21,6 +21,29 @@ app.use(function (req, res, next){
     // Pass to next layer of middleware
     next();
 });
+app.post('/thirtydaydata', function(req, res){
+    var device_Id=req.body.deviceId;
+    var queryid=req.body.param;
+    var currdate=new Date();
+    var enddate=new Date();
+    var query;
+    enddate.setDate(currdate.getDate()-30); 
+    if(queryid=="true")
+        query="SELECT log_time,gas_level FROM device_log_historical WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' AND log_time   <= '"+currdate.getFullYear()+"-"+(currdate.getMonth()+1)+"-"+currdate.getDate()+"' order by log_time";
+    if(queryid=="false")
+        query="SELECT log_time,gas_detector FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' AND log_time   <= '"+currdate.getFullYear()+"-"+(currdate.getMonth()+1)+"-"+currdate.getDate()+"' order by log_time";
+    connection.getConnection(function(err,connection_callback){
+        if(err){
+            connection_callback.release();
+        }
+    //console.log("device_id :"+userNmae+"solenoid : "+password);
+    connection_callback.query(query, function (err, result, fields){
+        console.log(query);
+        res.send(result);
+    });
+     connection_callback.end();     
+    });
+});
 app.post('/users/changePassword', function(req, res){
     var user_id = req.body.user_id;
     var oldpassword = req.body.oldPassword;
