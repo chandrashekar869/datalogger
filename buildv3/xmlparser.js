@@ -19,6 +19,8 @@ var init=function(xmlstring){
     var sfd=xmlstring.substring(this.sfdindex,this.sfdlastindex);
     xmlstring=xmlstring.substring(0,this.sfdindex-5)+xmlstring.substring(this.dlmlastindex+6,xmlstring.length);
     xmlstring=refine(xmlstring,false);
+    try
+    {
     xmlparser(xmlstring,function(err,result){
         if(err) {console.log(err);}
         result.config.DLM=[dlm];
@@ -27,6 +29,13 @@ var init=function(xmlstring){
         result=JSON.parse(result);
         xmlstring=result;
     });
+}
+    catch(e)
+    {
+    console.log("Error", e.stack);
+    console.log("Error", e.name);
+    console.log("Error", e.message);
+    }
         return xmlstring.config;
 }
 module.exports=init;
