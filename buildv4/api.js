@@ -421,9 +421,9 @@ app.post('/reporting', function(req, res){
     console.log(queryid);
     var query="";
     if(queryid=="true")
-        query="SELECT log_time,gas_level FROM device_log_historical where device_id='"+deviceId+"' order by log_time";
+        query="SELECT log_time,gas_level FROM device_log_historical USE INDEX (idx_report) where device_id='"+deviceId+"' order by log_time";
     if(queryid=="false")
-        query="SELECT log_time,gas_detector FROM device_log_historical where device_id='"+deviceId+"' order by log_time";
+        query="SELECT log_time,gas_detector FROM device_log_historical USE INDEX (idx_report) where device_id='"+deviceId+"' order by log_time";
     connection.getConnection(function(err,connection_callback){
         if(err){
             connection_callback.release();
