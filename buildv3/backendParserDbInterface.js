@@ -526,7 +526,7 @@ connection.getConnection(function(err,connection_callback){
     }
     console.log("Connected");
     connection_callback.query(sql,function(err,result,fields){
-        if(err) throw err;
+       // if(err) throw err;
         if(result[0]==null){
             console.log("empty result");
         }
@@ -583,7 +583,7 @@ function Update_data_log_current(customer_name,locationLL,coordinates){
         }
         console.log("Connected");
         connection_callback.query(sql_device_log_current_update,function(err,result,fields){
-            if(err) throw err;
+       //     if(err) throw err;
       //     console.log(result);
          });
          connection_callback.end();
@@ -621,7 +621,7 @@ connection.getConnection(function(err,connection_callback){
     }
     console.log("Connected");
     connection_callback.query(sql_device_log_historical,function(err,result,fields){
-        if(err) throw err;
+       // if(err) throw err;
         //console.log(result);
      });
      connection_callback.end();
@@ -641,7 +641,7 @@ function insert_session_log(){
         }
         console.log("Connected");
         connection_callback.query(sql_session_log,function(err,result,fields){
-            if(err) {throw err};
+       //     if(err) {throw err};
             console.log("Error in Inserting data");
            // console.log(result);
             return 0;
