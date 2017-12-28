@@ -31,9 +31,9 @@ app.post('/thirtydaydata', function(req, res){
     var query;
     enddate.setDate(currdate.getDate()-30); 
     if(queryid=="true")
-        query="SELECT log_time,gas_level FROM device_log_historical WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' AND log_time   <= '"+currdate.getFullYear()+"-"+(currdate.getMonth()+1)+"-"+currdate.getDate()+"' order by log_time";
+        query="SELECT log_time,gas_level FROM device_log_historical WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' order by log_time";
     if(queryid=="false")
-        query="SELECT log_time,gas_detector FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' AND log_time   <= '"+currdate.getFullYear()+"-"+(currdate.getMonth()+1)+"-"+currdate.getDate()+"' order by log_time";
+        query="SELECT log_time,gas_detector FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' order by log_time";
     connection.getConnection(function(err,connection_callback){
         if(err){
             connection_callback.release();
