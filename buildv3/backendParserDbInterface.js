@@ -148,7 +148,14 @@ function validateDevice(res){
                 sessid_rem=sessid_new;
                 update_device_list(sessid_new,login_tokenised_message.devid);
                 insertconfigchange(login_tokenised_message.devid);
+                try{
                 insertconfigdata(login_tokenised_message.devid);
+                }
+                catch(e){
+                console.log("Error", e.stack);
+    console.log("Error", e.name);
+    console.log("Error", e.message);
+                }
                 res.end(sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log("login response=",sessid_new+dlmPattern+login_tokenised_message.sfd+dlmPattern+login_tokenised_message.msgid+dlmPattern+0+dlmPattern+returnreq_id+dlmPattern+login_tokenised_message.Trans_Id);
                 console.log("sessid=",sessid_new);    
