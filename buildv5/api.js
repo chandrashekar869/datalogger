@@ -415,7 +415,7 @@ app.post('/users/login', function(req, res){
   var password = req.body.password;
   connection_callback.query("SELECT * FROM user_details where email_id ='"+username+"' and password = '"+password+"'", function (err, result, fields){
   if (err){throw err;}
-  if(result.length>0){
+  if(result.length>0 && result[0].email_id===username){
       res.send(result);
       console.log("device_id :"+username+"solenoid : "+password+" Record exists");
    } 
