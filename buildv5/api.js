@@ -23,6 +23,35 @@ app.use(function (req, res, next){
 });
 
 
+app.post('/changePassword', function(req, res){
+    var email_id=req.body.data;
+    var query;
+    connection.getConnection(function(err,connection_callback){
+        if(err){
+            connection_callback.release();
+        }
+    //console.log("device_id :"+userNmae+"solenoid : "+password);
+    connection_callback.query("Select email_id from user_details where email_id='"+email_id+"'", function (err, result, fields){
+        console.log("Select email_id from user_details where email_id='"+email_id+"'");
+        if(result.length!=0 && email_id===result[0].email_id){
+            connection_callback.query("update user_details set approved='11' where email_id='"+email_id+"'", function (err, result, fields){
+                res.send("DONE");
+             });           
+        
+        }
+        else{
+            res.send('WRONG_EMAIL');
+        }
+
+    });
+     connection_callback.end();     
+    });
+});
+
+
+
+
+
 app.post('/thirtydaydata', function(req, res){
     var device_Id=req.body.deviceId;
     var queryid=req.body.param;
@@ -38,6 +67,15 @@ app.post('/thirtydaydata', function(req, res){
         query="SELECT log_time,tank_pressure FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' order by log_time";
     if(queryid=="LP")
         query="SELECT log_time,line_pressure FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' order by log_time";
+    if(queryid=="meter1")
+        query="SELECT log_time,meter1 FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' order by log_time";
+    if(queryid=="meter2")
+        query="SELECT log_time,meter2 FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' order by log_time";
+    if(queryid=="meter3")
+        query="SELECT log_time,meter3 FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' order by log_time";
+    if(queryid=="meter4")
+        query="SELECT log_time,meter4 FROM device_log_historical  WHERE device_id='"+device_Id+"' AND   log_time >= '"+enddate.getFullYear()+"-"+(enddate.getMonth()+1)+"-"+enddate.getDate()+"' order by log_time";
+    
     connection.getConnection(function(err,connection_callback){
         if(err){
             connection_callback.release();
@@ -438,6 +476,14 @@ app.post('/reporting', function(req, res){
         query="SELECT log_time,tank_pressure FROM device_log_historical where device_id='"+deviceId+"' order by log_time";
     if(queryid=="LP")
         query="SELECT log_time,line_pressure FROM device_log_historical where device_id='"+deviceId+"' order by log_time";
+    if(queryid=="meter1")
+        query="SELECT log_time,meter1 FROM device_log_historical  WHERE device_id='"+deviceId+"' order by log_time";
+    if(queryid=="meter2")
+        query="SELECT log_time,meter2 FROM device_log_historical  WHERE device_id='"+deviceId+"' order by log_time";
+    if(queryid=="meter3")
+        query="SELECT log_time,meter3 FROM device_log_historical  WHERE device_id='"+deviceId+"' order by log_time";
+    if(queryid=="meter4")
+        query="SELECT log_time,meter4 FROM device_log_historical  WHERE device_id='"+deviceId+"' order by log_time";
     connection.getConnection(function(err,connection_callback){
         if(err){
             connection_callback.release();
