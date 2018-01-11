@@ -221,16 +221,14 @@ app.post('/addDevice', function(req, res) {
         console.log(query);
         connection_callback.query(query, function (err, result, fields) {
             if(err)
-		    throw err;
-                //res.send("ERR");
+		res.send("ERR");
             else if(data.editDevice==true)
             res.send("DONE");
             else if(data.editDevice==false){
                 query="Insert into user_device_list(user_id,device_id) VALUES ('"+data.user_id+"','"+data.device_id+"')"
                 connection_callback.query(query, function (err, result, fields) {
                     if(err)
-			throw err;
-			    //                        res.send("ERR");
+			res.send("ERR");
                     else
                     res.send("DONE");
                 });
