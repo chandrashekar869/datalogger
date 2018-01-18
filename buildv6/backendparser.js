@@ -15,6 +15,10 @@ catch(err){
 var log_stdout = process.stdout;
 try{
 console.log = function(a,d) { //
+  if(a=='undefined')
+    a='';
+  if(d=='undefined')
+    d='';
   log_file.write(new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString()+":"+a+d+ '\n');
   log_stdout.write(a+d + '\n');
 };
@@ -65,12 +69,10 @@ app.get("/",function(req,res){
    console.log("Server running");
     res.sendFile("core.html",{root:__dirname});
 });
-app.get("/logs.txt",function(req,res){
+app.get("/logs",function(req,res){
     console.log("Server running");
     try{
-    fs.readFile('logs.txt','utf-8',function(err,contents){
-        res.send(contents);
-    });
+      res.sendFile("logs.txt",{root:__dirname});
 }
 catch(err)
 {
