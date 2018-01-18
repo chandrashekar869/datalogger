@@ -15,8 +15,8 @@ catch(err){
 var log_stdout = process.stdout;
 try{
 console.log = function(d) { //
-  log_file.write(new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString()+":"+util.format(d) + '\n');
-  log_stdout.write(util.format(d) + '\n');
+  log_file.write(new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString()+":"+d+ '\n');
+  log_stdout.write(d + '\n');
 };
 }
 catch(err){
