@@ -1,5 +1,28 @@
 var mysql=require('mysql');
 var configparser=require('./workconfigv1.js');
+var fs = require('fs');
+var util = require('util');
+process.on('uncaughtException', function (err) {
+  console.error(err);
+  console.log("Node NOT Exiting...");
+});
+try{
+var log_file = fs.createWriteStream(__dirname + '/logs.txt', {flags : 'a'});
+}
+catch(err){
+    console.log('error',err);
+}
+var log_stdout = process.stdout;
+try{
+console.log = function(d) { //
+  log_file.write(new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString()+":"+util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
+}
+catch(err){
+    console.log('error',err);
+}
+
 var device_id="";
 var address="temp address";
 var ip_address="temp ip address2";
