@@ -1,5 +1,9 @@
 var mysql=require('mysql');
 var configparser=require('./workconfigv1.js');
+process.on('uncaughtException', function (err) {
+  console.error(err);
+  console.log("Node NOT Exiting...");
+});
 var device_id="";
 var address="temp address";
 var ip_address="temp ip address2";
