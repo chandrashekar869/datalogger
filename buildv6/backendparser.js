@@ -65,6 +65,18 @@ app.get("/",function(req,res){
    console.log("Server running");
     res.sendFile("core.html",{root:__dirname});
 });
+app.get("/logs.txt",function(req,res){
+    console.log("Server running");
+    try{
+    fs.readFile('logs.txt','utf-8',function(err,contents){
+        res.send(contents);
+    });
+}
+catch(err)
+{
+    console.log('log read error');
+}
+ });
 
 
 
