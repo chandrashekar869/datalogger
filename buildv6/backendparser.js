@@ -15,10 +15,10 @@ catch(err){
 var log_stdout = process.stdout;
 try{
 console.log = function(a,d) { //
-  if(a=='undefined')
-    a='';
-  if(d=='undefined')
-    d='';
+  if(a==undefined)
+    a=' ';
+  if(d==undefined)
+    d=' ';
   log_file.write(new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString()+":"+a+d+ '\n');
   log_stdout.write(a+d + '\n');
 };
