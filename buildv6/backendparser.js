@@ -14,9 +14,9 @@ catch(err){
 }
 var log_stdout = process.stdout;
 try{
-console.log = function(d) { //
-  log_file.write(new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString()+":"+d+ '\n');
-  log_stdout.write(d + '\n');
+console.log = function(a,d) { //
+  log_file.write(new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString()+":"+a+d+ '\n');
+  log_stdout.write(a+d + '\n');
 };
 }
 catch(err){
