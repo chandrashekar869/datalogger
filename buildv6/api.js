@@ -7,6 +7,7 @@ app.use(body_parser.json())
 app.use(body_parser.urlencoded({
     extended:true
 }));
+app.use(express.static('App'));
 
 app.use(function (req, res, next){
     // Website you wish to allow to connect
@@ -23,8 +24,9 @@ app.use(function (req, res, next){
 });
 
 app.get('/', function(req, res){
-    res.send('index.html');    
+    res.redirect('/');    
 });
+
 
 app.post('/changePassword', function(req, res){
     var email_id=req.body.data;
