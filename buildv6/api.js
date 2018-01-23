@@ -22,6 +22,9 @@ app.use(function (req, res, next){
     next();
 });
 
+app.get('/', function(req, res){
+    res.send('index.html');    
+});
 
 app.post('/changePassword', function(req, res){
     var email_id=req.body.data;
