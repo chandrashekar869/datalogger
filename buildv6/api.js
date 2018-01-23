@@ -830,7 +830,7 @@ app.post('/reporting', function(req, res){
     });
 
 
-app.listen(3200,'localhost');
+app.listen(3200);
 
 var connection=mysql.createPool(
     {
